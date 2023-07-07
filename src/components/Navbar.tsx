@@ -11,8 +11,8 @@ const Navbar: React.FC = () => {
 
 	return (
 		<header>
-			<nav className='bg-gray-800 py-4'>
-				<div className='max-w-7xl mx-auto px-4'>
+			<nav className='bg-gray-800 py-6'>
+				<div className='max-w-7xl mx-auto px-6'>
 					<div className='flex justify-between items-center'>
 						<div>
 							<Link to='/' className='flex items-center text-white'>
@@ -21,54 +21,37 @@ const Navbar: React.FC = () => {
 							</Link>
 						</div>
 						<div className='hidden sm:block'>
-							<ul className='space-y-4 flex flex-col h-full justify-start'>
+							<ul className='space-x-4 flex'>
 								<li>
-									<Link
-										to='/dashboard'
-										className='block text-gray-800 hover:text-gray-600 py-2'
-										onClick={toggleMenu}
-									>
+									<Link to='/dashboard' className='text-white hover:text-gray-600 py-2'>
 										Dashboard
 									</Link>
 								</li>
 								<li>
-									<Link
-										to='/login'
-										className='block text-gray-800 hover:text-gray-600 py-2'
-										onClick={toggleMenu}
-									>
+									<Link to='/login' className='text-white hover:text-gray-600 py-2'>
 										Login
 									</Link>
 								</li>
 								<li>
-									<Link
-										to='/register'
-										className='block text-gray-800 hover:text-gray-600 py-2'
-										onClick={toggleMenu}
-									>
+									<Link to='/register' className='text-white hover:text-gray-600 py-2'>
 										Register
 									</Link>
 								</li>
-
-								<li className='bg-black text-center '>
-									<p className='text-gray-500 text-sm bg-black'>
-										Designed & developed by Pawel Bilski
-									</p>
-								</li>
 							</ul>
 						</div>
+
 						<div className='sm:hidden relative'>
 							<button
 								type='button'
 								className='text-white hover:text-gray-300 focus:outline-none'
 								onClick={toggleMenu}
 							>
-								<AiOutlineMenu />
+								<AiOutlineMenu size = {28} />
 							</button>
 
 							<div
 								className={`fixed inset-0 z-50 bg-black bg-opacity-50 ${
-									isOpen ? 'layer-on' : 'menu-off'
+									isOpen ? 'layer-on' : 'layer-off'
 								}`}
 							>
 								<div
@@ -81,13 +64,13 @@ const Navbar: React.FC = () => {
 										className='focus:outline-none absolute right-5 top-5'
 										onClick={toggleMenu}
 									>
-										<AiOutlineClose />
+										<AiOutlineClose size = {28} />
 									</button>
-									<ul className='space-y-4 flex flex-col h-full justify-start'>
+									<ul className='space-y-4 flex flex-col h-full justify-start m-4'>
 										<li>
 											<Link
 												to='/dashboard'
-												className='block text-gray-800 hover:text-gray-600 py-2'
+												className='inline-block text-gray-800 hover:text-gray-600 py-2'
 												onClick={toggleMenu}
 											>
 												Dashboard
@@ -96,7 +79,7 @@ const Navbar: React.FC = () => {
 										<li>
 											<Link
 												to='/login'
-												className='block text-gray-800 hover:text-gray-600 py-2'
+												className='inline-block text-gray-800 hover:text-gray-600 py-2'
 												onClick={toggleMenu}
 											>
 												Login
@@ -105,7 +88,7 @@ const Navbar: React.FC = () => {
 										<li>
 											<Link
 												to='/register'
-												className='block text-gray-800 hover:text-gray-600 py-2'
+												className='inline-block text-gray-800 hover:text-gray-600 py-2'
 												onClick={toggleMenu}
 											>
 												Register

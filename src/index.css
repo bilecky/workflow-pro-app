@@ -20,5 +20,11 @@ body {
 
 .layer-on {
   transform: translateX(0);
-transition: .2s;
+transition: .1s;
+}
+.layer-off {
+  transform: translateX(100%);
+transition: .3s;
+visibility: hidden;
+
 }
