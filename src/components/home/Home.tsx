@@ -1,18 +1,19 @@
 import React from 'react';
 import { AiOutlineUser, AiOutlineProject, AiOutlineLike } from 'react-icons/ai';
 import Wrapper from '../../wrapper';
+import PopularProjects from '../projects/PopularProjects';
 
 const Home: React.FC = () => {
   return (
     <main>
       <Wrapper>
-        <section className='text-center mt-16'>
-          <h1 className='text-4xl font-bold'>
+        <section className='text-center mt-20'>
+          <h2 className='text-4xl font-bold'>
             <span className='relative'>
-              Weekly stats{' '}
+              Weekly stats
               <span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-green-500 opacity-50'></span>
             </span>
-          </h1>
+          </h2>
           <div className='flex mt-10 space-x-8 lg:w-4/5 m-auto'>
             <div className='flex-1'>
               <div className='border-b-4 border-gray-300 rounded-lg p-4 min-h-full'>
@@ -52,6 +53,7 @@ const Home: React.FC = () => {
             </div>
           </div>
         </section>
+        <PopularProjects/>
       </Wrapper>
     </main>
   );

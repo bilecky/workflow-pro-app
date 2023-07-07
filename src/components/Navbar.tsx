@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
 						<div>
 							<Link to='/' className='flex items-center text-white'>
 								<AiFillAlert className='w-6 h-6 mr-2' />
-								<span className='font-bold text-xl ml-3'>Workflow Pro</span>
+								<h1 className='font-bold text-xl ml-3'>Workflow Pro</h1>
 							</Link>
 						</div>
 						<div className='hidden sm:block'>
