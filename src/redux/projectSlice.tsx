@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { database } from '../firebase/firebaseConfig'
 import { collection, getDocs } from 'firebase/firestore'
 
-interface Project {
+export interface Project {
 	id: string
 	name: string
 	date: string

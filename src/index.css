@@ -2,9 +2,9 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-body {
-	background-color: rgb(204, 204, 204);
-}
+/* body {
+	background-color: #373737;
+} */
 
 .menu-off {
 	transform: translateX(100%);
