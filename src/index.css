@@ -1,0 +1,24 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+	background-color: rgb(204, 204, 204);
+}
+
+.menu-off {
+	transform: translateX(100%);
+	transition: 0.4s;
+	visibility: hidden;
+}
+
+.menu-on {
+	transform: translateX(0);
+	transition: 0.4s;
+	visibility: visible;
+}
+
+.layer-on {
+  transform: translateX(0);
+transition: .2s;
+}
