@@ -5,6 +5,7 @@ import { AppDispatch } from '../../redux/store'
 import { RootState } from '../../redux/store'
 import HashLoader from 'react-spinners/HashLoader'
 import ProjectCard from './ProjectCard'
+import { Link } from 'react-router-dom'
 
 const PopularProjects: React.FC = () => {
 	const dispatch: AppDispatch = useDispatch()
@@ -12,8 +13,9 @@ const PopularProjects: React.FC = () => {
 	const isLoading = useSelector((state: RootState) => state.projects.isLoading)
 	const error = useSelector((state: RootState) => state.projects.error)
 
-   const sortedProjects = projects.slice(0, 4).sort((a, b) => b.participants - a.participants);
-
+	const sortedProjects = projects
+		.slice(0, 4)
+		.sort((a, b) => b.participants - a.participants)
 
 	useEffect(() => {
 		dispatch(fetchProjects())
@@ -35,11 +37,18 @@ const PopularProjects: React.FC = () => {
 			{isLoading ? (
 				<HashLoader className='m-auto mt-32' color='#00FF00' />
 			) : (
-				<div className='mt-10 gap-7 grid   md:grid-cols-2 lg:w-4/5 m-auto'>
+				<div className='mt-16 gap-7 grid   md:grid-cols-2 lg:w-4/5 m-auto'>
 					{sortedProjects.map(project => (
 						<ProjectCard key={project.id} project={project} />
 					))}
 				</div>
+			)}
+			{projects.length > 4 && (
+				<Link to='/projects' className='mt-4 inline-block'>
+					<button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10'>
+						Pokaż więcej
+					</button>
+				</Link>
 			)}
 		</section>
 	)
