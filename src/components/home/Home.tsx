@@ -13,7 +13,7 @@ const Home: React.FC = () => {
               <span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-green-500 opacity-50'></span>
             </span>
           </h1>
-          <div className='flex mt-10 space-x-8 lg:w-2/3 m-auto'>
+          <div className='flex mt-10 space-x-8 lg:w-4/5 m-auto'>
             <div className='flex-1'>
               <div className='border-b-4 border-gray-300 rounded-lg p-4 min-h-full'>
                 <div className='flex items-center justify-center mb-4'>
@@ -23,7 +23,7 @@ const Home: React.FC = () => {
                 <p className='text-gray-600'>New Users</p>
               </div>
             </div>
-            <div className='flex-1 sm:w-1/5 lg:w-1/3'>
+            <div className='flex-1 sm:w-1/2 lg:w-1/4'>
               <div className='border-b-4 border-gray-300 rounded-lg p-4 min-h-full'>
                 <div className='flex items-center justify-center mb-4'>
                   <AiOutlineProject className='text-4xl' />
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
                 <p className='text-gray-600'>New Projects</p>
               </div>
             </div>
-            <div className='flex-1 sm:w-1/5 lg:w-1/3'>
+            <div className='flex-1 sm:w-1/2 lg:w-1/4'>
               <div className='border-b-4 border-gray-300 rounded-lg p-4 min-h-full'>
                 <div className='flex items-center justify-center mb-4'>
                   <AiOutlineLike className='text-4xl' />
@@ -41,7 +41,7 @@ const Home: React.FC = () => {
                 <p className='text-gray-600'>New Likes</p>
               </div>
             </div>
-            <div className='hidden lg:flex flex-1 sm:w-1/5 lg:w-1/3'>
+            <div className='flex-1 sm:w-1/2 lg:w-1/4 hidden sm:block'>
               <div className='border-b-4 border-gray-300 rounded-lg p-4 min-h-full'>
                 <div className='flex items-center justify-center mb-4'>
                   <AiOutlineLike className='text-4xl' />
