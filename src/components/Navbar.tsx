@@ -36,13 +36,13 @@ const Navbar: React.FC = () => {
 								</li>
 								<li>
 									<Link to='/login' className='text-white relative group'>
-										Login
+									Sign in
 										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
 									</Link>
 								</li>
 								<li>
 									<Link to='/register' className='text-white relative group'>
-										Register
+									Sign up
 										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
 									</Link>
 								</li>
@@ -91,7 +91,7 @@ const Navbar: React.FC = () => {
 												className='inline-block text-gray-800 hover:text-gray-600 py-2'
 												onClick={toggleMenu}
 											>
-												Login
+												Sign in
 											</Link>
 										</li>
 										<li>
@@ -100,7 +100,7 @@ const Navbar: React.FC = () => {
 												className='inline-block text-gray-800 hover:text-gray-600 py-2'
 												onClick={toggleMenu}
 											>
-												Register
+												Sign up
 											</Link>
 										</li>
 										<li className='flex-grow'></li>

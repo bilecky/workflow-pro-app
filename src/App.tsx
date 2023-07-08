@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import About from './components/About'
 import Home from './components/home/Home'
 import Register from './components/auth/register'
+import BackgroundShape from './helpers/BackgroundShape'
 
 // import { useEffect } from 'react';
 // import { collection, addDoc } from 'firebase/firestore';
@@ -12,11 +13,7 @@ const App = () => {
 	return (
 		<BrowserRouter>
 			<Navbar />
-			<img
-				src='/src/assets/png-image.png'
-				alt='background shape'
-				className='top-0 opacity-20  -z-10 absolute w-full h-full '
-			/>
+			<BackgroundShape />
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/about' element={<About />} />
