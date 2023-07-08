@@ -33,7 +33,7 @@ const PopularProjects: React.FC = () => {
 		if (sliderRef.current) {
 			const container = sliderRef.current
 
-			container.scrollLeft -= 150
+			container.scrollLeft -= 250
 			setScrollOffset(container.scrollLeft)
 		}
 	}
@@ -41,7 +41,7 @@ const PopularProjects: React.FC = () => {
 	const handleScrollRight = () => {
 		if (sliderRef.current) {
 			const container = sliderRef.current
-			container.scrollLeft += 150
+			container.scrollLeft += 250
 			setScrollOffset(container.scrollLeft)
 		}
 	}
