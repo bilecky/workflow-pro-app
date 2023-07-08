@@ -11,30 +11,33 @@ const Navbar: React.FC = () => {
 
 	return (
 		<header>
-			<nav className='bg-gray-800 py-6'>
-				<div className='max-w-7xl mx-auto px-6'>
+			<nav className=' py-6 font-Montserrat '>
+				<div className='lg:w-4/5 mx-auto px-6'>
 					<div className='flex justify-between items-center'>
 						<div>
 							<Link to='/' className='flex items-center text-white'>
-								<AiFillAlert className='w-6 h-6 mr-2' />
-								<h1 className='font-bold text-xl ml-3'>Workflow Pro</h1>
+								<AiFillAlert className='w-6 h-6' />
+								<h1 className=' text-2xl font-bolder ml-3 text-lime-400'>Workflow Pro</h1>
 							</Link>
 						</div>
 						<div className='hidden sm:block'>
 							<ul className='space-x-4 flex'>
 								<li>
-									<Link to='/dashboard' className='text-white hover:text-gray-600 py-2'>
+									<Link to='/dashboard' className='text-white relative group'>
 										Dashboard
+										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
 									</Link>
 								</li>
 								<li>
-									<Link to='/login' className='text-white hover:text-gray-600 py-2'>
+									<Link to='/login' className='text-white relative group'>
 										Login
+										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
 									</Link>
 								</li>
 								<li>
-									<Link to='/register' className='text-white hover:text-gray-600 py-2'>
+									<Link to='/register' className='text-white relative group'>
 										Register
+										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
 									</Link>
 								</li>
 							</ul>
@@ -46,7 +49,7 @@ const Navbar: React.FC = () => {
 								className='text-white hover:text-gray-300 focus:outline-none'
 								onClick={toggleMenu}
 							>
-								<AiOutlineMenu size = {28} />
+								<AiOutlineMenu size={28} />
 							</button>
 
 							<div
@@ -64,7 +67,7 @@ const Navbar: React.FC = () => {
 										className='focus:outline-none absolute right-5 top-5'
 										onClick={toggleMenu}
 									>
-										<AiOutlineClose size = {28} />
+										<AiOutlineClose size={28} />
 									</button>
 									<ul className='space-y-4 flex flex-col h-full justify-start m-4'>
 										<li>
