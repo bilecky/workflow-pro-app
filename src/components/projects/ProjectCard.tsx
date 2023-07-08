@@ -9,7 +9,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 	const { name, date, description, participants, img } = project
 
 	return (
-		<div className='w-full sm:w-2/5 inline-block shadow-custom   mr-6 hover:scale-95 hover:shadow-md transition-all overflow-hidden bg-zinc-600 cursor-pointer '>
+		<div className='w-full sm:w-2/5 inline-block shadow-custom2   mr-6 hover:scale-95 hover:shadow-md transition-all overflow-hidden bg-zinc-600 cursor-pointer '>
 			<img
 				className='w-full h-48 object-cover transform hover:scale-105 transition-all'
 				src={img}

@@ -46,7 +46,7 @@ const Home: React.FC = () => {
 					</h2>
 					<div className='flex mt-16 space-x-8 lg:w-4/5 m-auto'>
 						<div className='flex-1'>
-							<div className='border-b-4 border-lime-400  rounded-lg p-4 min-h-full'>
+							<div className='border-b-4 border-lime-400   p-4 min-h-full'>
 								<div className='flex items-center justify-center '>
 									<AiOutlineUser className='text-4xl text-lime-400' />
 								</div>
@@ -55,7 +55,7 @@ const Home: React.FC = () => {
 							</div>
 						</div>
 						<div className='flex-1 sm:w-1/2 lg:w-1/4'>
-							<div className='border-b-4 border-lime-400  rounded-lg p-4 min-h-full'>
+							<div className='border-b-4 border-lime-400   p-4 min-h-full'>
 								<div className='flex items-center justify-center '>
 									<AiOutlineProject className='text-4xl text-lime-400 ' />
 								</div>
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
 							</div>
 						</div>
 						<div className='flex-1 sm:w-1/2 lg:w-1/4'>
-							<div className='border-b-4 border-lime-400  rounded-lg p-4 min-h-full'>
+							<div className='border-b-4 border-lime-400   p-4 min-h-full'>
 								<div className='flex items-center justify-center '>
 									<AiOutlineLike className='text-4xl text-lime-400' />
 								</div>
@@ -73,7 +73,7 @@ const Home: React.FC = () => {
 							</div>
 						</div>
 						<div className='flex-1 sm:w-1/2 lg:w-1/4 hidden sm:block'>
-							<div className='border-b-4 border-lime-400  rounded-lg p-4 min-h-full'>
+							<div className='border-b-4 border-lime-400   p-4 min-h-full'>
 								<div className='flex items-center justify-center '>
 									<AiOutlineLike className='text-4xl text-lime-400' />
 								</div>
