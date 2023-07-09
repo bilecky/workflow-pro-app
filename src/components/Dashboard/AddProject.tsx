@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Project } from '../../redux/projectSlice'
 import { auth, database } from '../../firebase/firebaseConfig'
 import { addDoc, collection } from 'firebase/firestore'
@@ -9,7 +9,7 @@ const AddProject: React.FC = () => {
 		name: '',
 		description: '',
 		image: '',
-		participants: 0,
+		participants: [],
 		authorId: '',
 		date: '',
 	})
@@ -33,8 +33,17 @@ const AddProject: React.FC = () => {
 			const user = auth.currentUser
 
 			if (user) {
-				const currentDate = new Date().toISOString().split('T')[0]
-				const newProject = { ...project, authorId: user.uid, date: currentDate }
+            const date = new Date();
+            const idFromDate = date.toISOString().slice(0, -5);
+
+				const currentDate = date.toISOString().split('T')[0]
+				const newProject = {
+					...project,
+               id: idFromDate,
+					authorId: user.uid,
+					participants: [...project.participants, user.email], // Dodaj ID użytkownika do tablicy participants
+					date: currentDate,
+				}
 				await addDoc(projectsCollection, newProject)
 				console.log('Projekt został pomyślnie dodany do Firestore')
 			}
@@ -42,6 +51,8 @@ const AddProject: React.FC = () => {
 			console.log(error + 'mamy blad podczas dodawania')
 		}
 	}
+
+   useEffect(() => {}, [])
 
 	return (
 		<form onSubmit={handleSubmit} className='flex items-center justify-center h-screen'>
@@ -84,19 +95,7 @@ const AddProject: React.FC = () => {
 						className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2 text-gray-900 bg-white border border-gray-300 rounded-md text-sm'
 					/>
 				</div>
-				<div className='mb-4'>
-					<label htmlFor='participants' className='block text-sm font-medium text-white'>
-						Number of Participants:
-					</label>
-					<input
-						type='number'
-						id='participants'
-						name='participants'
-						value={project.participants}
-						onChange={handleInputChange}
-						className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2 text-gray-900 bg-white border border-gray-300 rounded-md text-sm'
-					/>
-				</div>
+			
 				<button
 					type='submit'
 					className='w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'

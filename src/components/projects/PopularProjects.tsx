@@ -19,7 +19,7 @@ const PopularProjects: React.FC = () => {
 
 	const sortedProjects = projects
 		.slice(0, 5)
-		.sort((a, b) => b.participants - a.participants)
+		.sort((a, b) => b.participants.length - a.participants.length)
 
 	useEffect(() => {
 		dispatch(fetchProjects())
