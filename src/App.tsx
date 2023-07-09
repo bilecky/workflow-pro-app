@@ -5,6 +5,7 @@ import Home from './components/home/Home'
 import Register from './components/auth/register'
 import BackgroundShape from './helpers/BackgroundShape'
 import Login from './components/auth/Login'
+import Dashboard from './components/Dashboard/Dashboard'
 
 // import { useEffect } from 'react';
 // import { collection, addDoc } from 'firebase/firestore';
@@ -20,6 +21,9 @@ const App = () => {
 				<Route path='/about' element={<About />} />
 				<Route path='/register' element={<Register />} />
 				<Route path='/login' element={<Login/>}/>
+				<Route path='/dashboard' element={<Dashboard/>}/>
+
+
 			</Routes>
 		</BrowserRouter>
 	)

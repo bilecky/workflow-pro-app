@@ -6,13 +6,13 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-	const { name, date, description, participants, img } = project
+	const { name, date, description, participants, image } = project
 
 	return (
 		<div className='w-full sm:w-2/5 inline-block shadow-custom2   mr-6 hover:scale-95 hover:shadow-md transition-all overflow-hidden bg-zinc-600 cursor-pointer '>
 			<img
-				className='w-full h-48 object-cover transform hover:scale-105 transition-all'
-				src={img}
+				className='w-full h-48 object-cover transform hover:scale-110 transition-all  filter brightness-75 bg-lime-500 bg-opacity-50'
+				src={image}
 				alt={name}
 			/>
 			<div className='mt-4 p-4'>

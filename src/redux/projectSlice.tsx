@@ -3,13 +3,15 @@ import { database } from '../firebase/firebaseConfig'
 import { collection, getDocs } from 'firebase/firestore'
 
 export interface Project {
-	id: string
-	name: string
-	date: string
-	description: string
-	participants: number
-	img: string
-}
+	id: string;
+	name: string;
+	description: string;
+	image: string;
+	participants: number;
+	authorId: string;
+	date: string;
+
+ }
 
 interface ProjectsState {
 	data: Project[]
