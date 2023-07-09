@@ -5,7 +5,7 @@ import { FaCircle } from 'react-icons/fa'
 const About: React.FC = () => {
 	return (
 		<section className='text-center mt-20 font-Montserrat px-6 lg:w-4/5 mx-auto'>
-			<h2 className='text-4xl font-bold text-indigo-50'>
+			<h2 className='text-4xl font-bold text-zinc-50'>
 				<span className='relative'>
 					About
 					<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-lime-400 opacity-60'></span>
@@ -13,7 +13,7 @@ const About: React.FC = () => {
 			</h2>
 			<div className='lg:grid lg:grid-cols-2 gap-4'>
 				<div>
-					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-indigo-50'>
+					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-zinc-50'>
 						<FaCircle size={8} className='text-lime-500 mr-1.5 hidden xl:block' />
 						Collaborative Project Creation
 					</h2>
@@ -28,7 +28,7 @@ const About: React.FC = () => {
 					</p>
 				</div>
 				<div>
-					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-indigo-50'>
+					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-zinc-50'>
 						<FaCircle size={8} className='text-lime-500 mr-1.5 hidden xl:block' />
 						Efficient Information Sharing{' '}
 					</h2>
@@ -43,7 +43,7 @@ const About: React.FC = () => {
 					</p>
 				</div>
 				<div>
-					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-indigo-50'>
+					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-zinc-50'>
 						<FaCircle size={8} className='text-lime-500 mr-1.5 hidden xl:block' />
 						Precise Time Tracking{' '}
 					</h2>
@@ -58,7 +58,7 @@ const About: React.FC = () => {
 					</p>
 				</div>
 				<div>
-					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-indigo-50'>
+					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-zinc-50'>
 						<FaCircle size={8} className='text-lime-500 mr-1.5 hidden xl:block' />
 						Free Accounts with Premium Features{' '}
 					</h2>
@@ -75,7 +75,7 @@ const About: React.FC = () => {
 				</div>
 
 				<div>
-					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-indigo-50'>
+					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-zinc-50'>
 						<FaCircle size={8} className='text-lime-500 mr-1.5 hidden xl:block' />
 						Browse and Explore Projects
 					</h2>
@@ -91,7 +91,7 @@ const About: React.FC = () => {
 				</div>
 
 				<div>
-					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-indigo-50'>
+					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-zinc-50'>
 						<FaCircle size={8} className='text-lime-500 mr-1.5 hidden xl:block' />
 						<span> Personalized Profile and Dashboard</span>
 					</h2>
@@ -107,7 +107,7 @@ const About: React.FC = () => {
 					</p>
 				</div>
 				<div>
-					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-indigo-50 '>
+					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-zinc-50 '>
 						<FaCircle size={8} className='text-lime-500 mr-1.5 hidden xl:block' />
 						Track Your Project Contributions
 					</h2>
@@ -122,7 +122,7 @@ const About: React.FC = () => {
 					</p>
 				</div>
 				<div>
-					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-indigo-50'>
+					<h2 className='text-lg lg:text-2xl font-bold flex items-center justify-center mt-16 text-zinc-50'>
 						<FaCircle size={8} className='text-lime-500 mr-1.5 hidden xl:block' />
 						Precise Time Tracking{' '}
 					</h2>

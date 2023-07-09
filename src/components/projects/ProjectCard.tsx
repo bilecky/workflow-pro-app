@@ -16,10 +16,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 				alt={name}
 			/>
 			<div className='mt-4 p-4'>
-				<h2 className='text-xl text-indigo-100 font-semibold'>{name}</h2>
-				<p className='text-indigo-50 opacity-70 '>{date}</p>
-        <p className='text-indigo-50  whitespace-normal line-clamp-3'>{description}</p>
-				<p className='text-indigo-50 mt-2'>Participants: {participants}</p>
+				<h2 className='text-xl text-zinc-50 font-semibold'>{name}</h2>
+				<p className='text-zinc-200 opacity-70 '>{date}</p>
+        <p className='text-zinc-200  whitespace-normal line-clamp-3'>{description}</p>
+				<p className='text-zinc-200 mt-2'>Participants: {participants}</p>
 			</div>
 		</div>
 	)

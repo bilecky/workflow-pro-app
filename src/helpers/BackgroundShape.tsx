@@ -2,12 +2,11 @@ import React from 'react'
 
 const BackgroundShape = () => {
 	return (
-		<div className='absolute top-0 left-0 h-full w-full overflow-hidden -z-20 opacity-30'>
+		<div className='absolute top-0 left-0 h-full w-full overflow-hidden -z-20 opacity-40 lg:opacity-20'>
 			<img
 				src='/src/assets/png-image.png'
 				alt='background shape'
-				className='w-full'
-				style={{ zIndex: -1 }}
+				className='w-full h-full -z-10'
 			/>
 			<div
 				className='absolute inset-0'
