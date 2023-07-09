@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useRef, useEffect, MouseEvent } from 'react';
+import { useSelector } from 'react-redux'
 import { auth } from '../../firebase/firebaseConfig'
 // import { setAuthenticated, setRegistered } from '../../redux/authSlice'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 import { useNavigate } from 'react-router-dom'
+import { RootState } from '../../redux/store'
 
 const Register: React.FC = () => {
+	const user = useSelector((state: RootState) => state.auth.value)
+
 	const navigate = useNavigate()
 
 	const [email, setEmail] = useState<string>('')
@@ -20,20 +23,26 @@ const Register: React.FC = () => {
 	const handlePassword = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		setPassword(e.target.value)
 	}
-
+	useEffect(() => {
+		if (user) {
+			navigate('/')
+		}
+	}, [navigate, user])
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault()
 
+		
 		try {
 			await createUserWithEmailAndPassword(auth, email, password)
 			console.log('rejestracja zakonczona sukcesem')
 			// dispatch(setRegistered(true))
 			// dispatch(setAuthenticated(true))
-			navigate('/')
 		} catch (error) {
 			console.log('registration problem', error)
 		}
 	}
+
+
 
 	return (
 		<div className='flex items-center justify-center h-[80vh] '>

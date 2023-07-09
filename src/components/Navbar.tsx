@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillAlert, AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import { auth, onAuthStateChanged } from '../firebase/firebaseConfig';
+import { auth, onAuthStateChanged, signOut } from '../firebase/firebaseConfig';
 import { saveUser } from '../redux/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
@@ -39,6 +39,8 @@ const Navbar: React.FC = () => {
 			setLogoutMenu(false);
 		}
 	};
+
+	const handleLogoutBtn = () => signOut(auth)
 	
 	useEffect(() => {
 		document.addEventListener('click', handleMenuClick);
@@ -100,7 +102,7 @@ const Navbar: React.FC = () => {
 										)}
 										{logoutMenu && (
 											<div className='absolute bg-slate-50 hover:text-lime-400 hover:bg-zinc-600 transition text-black -left-4 -bottom-14 w-full'>
-												<div className='px-6 py-3'>Logout</div>
+												<div onClick={handleLogoutBtn} className='px-6 py-3'>Logout</div>
 											</div>
 										)}
 									</button>
