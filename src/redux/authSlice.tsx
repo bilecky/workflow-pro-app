@@ -1,29 +1,20 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
-interface AuthState {
-   isAuthenticated: boolean;
-   isRegistered: boolean
+const initialState = {
+	value: null, 
 }
 
-const initialState: AuthState = {
-   isAuthenticated: false,
-   isRegistered: false
-}
-
-const authSlice = createSlice({
-   name: 'auth',
-   initialState,
-   reducers: {
-      setAuthenticated: (state, action: PayloadAction<boolean>) => {
-         state.isAuthenticated = action.payload
-      },
-      setRegistered: (state, action: PayloadAction<boolean>) => {
-         state.isRegistered = action.payload
-      }
-
-   }
+export const authSlice = createSlice({
+	name: 'user',
+	initialState,
+	reducers: {
+		saveUser: (state, action) => {
+			state.value = action.payload
+		},
+	},
 })
 
-export const {setAuthenticated, setRegistered} = authSlice.actions
+// Action creators are generated for each case reducer function
+export const { saveUser } = authSlice.actions
 
 export default authSlice.reducer

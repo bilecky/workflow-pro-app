@@ -53,7 +53,7 @@ const projectsSlice = createSlice({
 			.addCase(fetchProjects.fulfilled, (state, action) => {
 				state.isLoading = false
 				state.error = null
-				state.data = action.payload
+				state.data = action.payload  as Project[]
 			})
 			.addCase(fetchProjects.rejected, (state, action) => {
 				state.isLoading = false

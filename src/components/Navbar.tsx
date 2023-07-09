@@ -1,28 +1,67 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { AiFillAlert, AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
+import React, { useState, useRef, useEffect, MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
+import { AiFillAlert, AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
+import { auth, onAuthStateChanged } from '../firebase/firebaseConfig';
+import { saveUser } from '../redux/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../redux/store';
 
 const Navbar: React.FC = () => {
-	const [isOpen, setIsOpen] = useState(false)
+	const menuRef = useRef<HTMLHeadingElement>(null);
+
+	const [isOpen, setIsOpen] = useState(false);
+	const [logoutMenu, setLogoutMenu] = useState(false);
+
+	const user = useSelector((state: RootState) => state.auth.value);
+	console.log('user from state', user);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				dispatch(saveUser(user.email));
+			} else {
+				dispatch(saveUser(undefined));
+			}
+		});
+	}, [dispatch]);
 
 	const toggleMenu = () => {
-		setIsOpen(!isOpen)
-	}
+		setIsOpen(!isOpen);
+	};
+
+	const handleLogoutMenu = () => {
+		setLogoutMenu(!logoutMenu);
+	};
+
+	const handleMenuClick = (event: globalThis.MouseEvent) => {
+		if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+			setLogoutMenu(false);
+		}
+	};
+	
+	useEffect(() => {
+		document.addEventListener('click', handleMenuClick);
+	
+		return () => {
+			document.removeEventListener('click', handleMenuClick);
+		};
+	}, []);
 
 	return (
-		<header>
-			<nav className=' py-6 font-Montserrat '>
+		<header ref={menuRef}>
+			<nav className='py-6 font-Montserrat'>
 				<div className='lg:w-4/5 mx-auto px-6'>
 					<div className='flex justify-between items-center'>
 						<div>
 							<Link to='/' className='flex items-center text-white'>
 								<AiFillAlert className='w-6 h-6' />
-								<h1 className=' text-2xl font-bolder ml-3 text-lime-400'>Workflow Pro</h1>
+								<h1 className='text-2xl font-bolder ml-3 text-lime-400'>Workflow Pro</h1>
 							</Link>
 						</div>
 						<div className='hidden sm:block'>
 							<ul className='space-x-4 flex'>
-							<li>
+								<li>
 									<Link to='/about' className='text-white relative group'>
 										About
 										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
@@ -34,17 +73,37 @@ const Navbar: React.FC = () => {
 										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
 									</Link>
 								</li>
+								{!user && (
+									<>
+										<li>
+											<Link to='/login' className='text-white relative group'>
+												Sign in
+												<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
+											</Link>
+										</li>
+										<li>
+											<Link to='/register' className='text-white relative group'>
+												Sign up
+												<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
+											</Link>
+										</li>
+									</>
+								)}
+
 								<li>
-									<Link to='/login' className='text-white relative group'>
-									Sign in
-										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
-									</Link>
-								</li>
-								<li>
-									<Link to='/register' className='text-white relative group'>
-									Sign up
-										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
-									</Link>
+									<button onClick={handleLogoutMenu} className='text-white relative group'>
+										{user && (
+											<>
+												{' '}
+												Hi, <span className='font-semibold text-lime-400'>{user}</span>
+											</>
+										)}
+										{logoutMenu && (
+											<div className='absolute bg-slate-50 hover:text-lime-400 hover:bg-zinc-600 transition text-black -left-4 -bottom-14 w-full'>
+												<div className='px-6 py-3'>Logout</div>
+											</div>
+										)}
+									</button>
 								</li>
 							</ul>
 						</div>
@@ -105,7 +164,7 @@ const Navbar: React.FC = () => {
 										</li>
 										<li className='flex-grow'></li>
 
-										<li className=' text-center'>
+										<li className='text-center'>
 											<p className='text-gray-500 text-sm'>
 												Designed &amp; developed by Pawel Bilski
 											</p>
@@ -118,7 +177,7 @@ const Navbar: React.FC = () => {
 				</div>
 			</nav>
 		</header>
-	)
-}
+	);
+};
 
-export default Navbar
+export default Navbar;

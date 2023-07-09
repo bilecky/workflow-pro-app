@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { auth } from '../../firebase/firebaseConfig'
-import { setAuthenticated, setRegistered } from '../../redux/authSlice'
+// import { setAuthenticated, setRegistered } from '../../redux/authSlice'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 import { useNavigate } from 'react-router-dom'
@@ -12,10 +12,14 @@ const Register: React.FC = () => {
 	const [email, setEmail] = useState<string>('')
 
 	const [password, setPassword] = useState<string>('')
-	const dispatch = useDispatch()
 
-	const handleEmail = e => setEmail(e.target.value)
-	const handlePassword = e => setPassword(e.target.value)
+	const handleEmail = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		setEmail(e.target.value)
+	}
+
+	const handlePassword = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		setPassword(e.target.value)
+	}
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault()
@@ -23,8 +27,8 @@ const Register: React.FC = () => {
 		try {
 			await createUserWithEmailAndPassword(auth, email, password)
 			console.log('rejestracja zakonczona sukcesem')
-			dispatch(setRegistered(true))
-			dispatch(setAuthenticated(true))
+			// dispatch(setRegistered(true))
+			// dispatch(setAuthenticated(true))
 			navigate('/')
 		} catch (error) {
 			console.log('registration problem', error)
