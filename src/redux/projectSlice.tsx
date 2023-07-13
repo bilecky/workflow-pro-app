@@ -1,17 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { database } from '../firebase/firebaseConfig'
 import { collection, getDocs } from 'firebase/firestore'
-
-export interface Project {
+export interface Participant {
+	email: string | null ;
+	timeSpend: number;
+ }
+ 
+ export interface Project {
 	id: string;
 	name: string;
 	description: string;
 	image: string;
-	participants: string[];
 	authorId: string;
+	participants: Participant[];
 	date: string;
-
  }
+ 
 
 interface ProjectsState {
 	data: Project[]
@@ -55,7 +59,7 @@ const projectsSlice = createSlice({
 			.addCase(fetchProjects.fulfilled, (state, action) => {
 				state.isLoading = false
 				state.error = null
-				state.data = action.payload  as Project[]
+				state.data = action.payload as Project[]
 			})
 			.addCase(fetchProjects.rejected, (state, action) => {
 				state.isLoading = false

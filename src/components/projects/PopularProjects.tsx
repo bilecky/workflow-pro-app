@@ -8,6 +8,7 @@ import ProjectCard from './ProjectCard'
 import { Link } from 'react-router-dom'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
+
 const PopularProjects: React.FC = () => {
 	const dispatch: AppDispatch = useDispatch()
 	const projects = useSelector((state: RootState) => state.projects.data)
@@ -19,7 +20,7 @@ const PopularProjects: React.FC = () => {
 
 	const sortedProjects = projects
 		.slice(0, 5)
-		.sort((a, b) => b.participants.length - a.participants.length)
+		.sort((a, b) => Object.keys(b.participants).length - Object.keys(a.participants).length);
 
 	useEffect(() => {
 		dispatch(fetchProjects())

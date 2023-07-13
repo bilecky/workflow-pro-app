@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, } from 'react'
 import { AiOutlineUser, AiOutlineProject, AiOutlineLike } from 'react-icons/ai'
 import Wrapper from '../../helpers/Wrapper'
 import PopularProjects from '../projects/PopularProjects'

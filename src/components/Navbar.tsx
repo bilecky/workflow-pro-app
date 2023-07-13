@@ -5,9 +5,12 @@ import { auth, onAuthStateChanged, signOut } from '../firebase/firebaseConfig';
 import { saveUser } from '../redux/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
+import { useNavigate } from 'react-router-dom'
+
 
 const Navbar: React.FC = () => {
 	const menuRef = useRef<HTMLHeadingElement>(null);
+	const navigate = useNavigate()
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [logoutMenu, setLogoutMenu] = useState(false);
@@ -22,6 +25,7 @@ const Navbar: React.FC = () => {
 				dispatch(saveUser(user.email));
 			} else {
 				dispatch(saveUser(undefined));
+				navigate('/')
 			}
 		});
 	}, [dispatch]);

@@ -48,6 +48,7 @@ const ProjectList: React.FC = () => {
        <div className="flex flex-col">
          {projects.map((project) => (
            <Link
+           id = {project.id}
              key={project.id}
              to={`/projects/${project.id}`}
              className="p-4 mb-4 bg-gray-100 rounded-md shadow-md hover:shadow-lg"
