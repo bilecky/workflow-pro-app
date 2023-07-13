@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import {
-	collection,
-	getDocs,
-	query,
-	updateDoc,
-	where,
-} from 'firebase/firestore'
+import { collection, getDocs, query, updateDoc, where } from 'firebase/firestore'
 import { auth, database } from '../../firebase/firebaseConfig'
 import { Project } from '../../redux/projectSlice'
 import { useNavigate } from 'react-router-dom'
 import { Participant } from '../../redux/projectSlice'
 
-
 type ProjectParams = {
 	id: string
 }
-
-
 
 const ProjectDetails: React.FC = () => {
 	const currentUser = auth.currentUser
 	const navigate = useNavigate()
 
-  useEffect(() => {
+	useEffect(() => {
 		if (!currentUser) {
 			navigate('/')
 		}
@@ -35,8 +26,7 @@ const ProjectDetails: React.FC = () => {
 	const [isRunning, setIsRunning] = useState<boolean>(false)
 	const [timeElapsed, setTimeElapsed] = useState<number>(0)
 	const [timer, setTimer] = useState<NodeJS.Timeout | null>(null)
-
-
+	const [joining, setIsJoining] = useState<boolean>(false)
 
 	useEffect(() => {
 		const fetchProject = async () => {
@@ -60,20 +50,20 @@ const ProjectDetails: React.FC = () => {
 		}
 
 		fetchProject()
-	}, [id, currentUser])
+	}, [id, currentUser, joining])
 
-  const getUserTimeElapsed = (project: Project, email: string | undefined): number => {
-    if (!email || !project || !project.participants) {
-      return 0;
-    }
-  
-    const participant = project.participants.find(p => p.email === email);
-    if (!participant || !participant.timeSpend) {
-      return 0;
-    }
-  
-    return participant.timeSpend;
-  }
+	const getUserTimeElapsed = (project: Project, email: string | undefined): number => {
+		if (!email || !project || !project.participants) {
+			return 0
+		}
+
+		const participant = project.participants.find(p => p.email === email)
+		if (!participant || !participant.timeSpend) {
+			return 0
+		}
+
+		return participant.timeSpend
+	}
 
 	const handleStart = () => {
 		if (!isRunning) {
@@ -102,17 +92,17 @@ const ProjectDetails: React.FC = () => {
 			if (!querySnapshot.empty) {
 				const docRef = querySnapshot.docs[0].ref
 
-        const updatedParticipants: Participant[] = querySnapshot.docs[0]
-        .data()
-        .participants.map((participant: Participant) => {
-          if (participant.email === currentUser.email) {
-            return {
-              email: participant.email,
-              timeSpend: timeElapsed,
-            };
-          }
-          return participant;
-        });
+				const updatedParticipants: Participant[] = querySnapshot.docs[0]
+					.data()
+					.participants.map((participant: Participant) => {
+						if (participant.email === currentUser.email) {
+							return {
+								email: participant.email,
+								timeSpend: timeElapsed,
+							}
+						}
+						return participant
+					})
 
 				await updateDoc(docRef, {
 					participants: updatedParticipants,
@@ -124,54 +114,54 @@ const ProjectDetails: React.FC = () => {
 	}
 
 	const handleJoinProject = async () => {
-		if (!currentUser || !project) {
-			return
-		}
+		if (!joining && currentUser && project) {
+			setIsJoining(true)
 
-		try {
-			const projectsCollectionRef = collection(database, 'projects')
-			const projectQuery = query(projectsCollectionRef, where('id', '==', id))
-			const querySnapshot = await getDocs(projectQuery)
+			try {
+				const projectsCollectionRef = collection(database, 'projects')
+				const projectQuery = query(projectsCollectionRef, where('id', '==', id))
+				const querySnapshot = await getDocs(projectQuery)
 
-			if (!querySnapshot.empty) {
-				const projectDocRef = querySnapshot.docs[0].ref
-				const projectData = querySnapshot.docs[0].data() as Project
+				if (!querySnapshot.empty) {
+					const projectDocRef = querySnapshot.docs[0].ref
+					const projectData = querySnapshot.docs[0].data() as Project
 
-				if (projectData.authorId === currentUser.uid) {
-					console.log('Jesteś już twórcą tego projektu.')
-					return
+					if (projectData.authorId === currentUser.uid) {
+						console.log('Jesteś już twórcą tego projektu.')
+						return
+					}
+
+					let participants: Participant[] = []
+
+					if (projectData.participants) {
+						participants = [...projectData.participants]
+					}
+
+					const currentUserParticipant = participants.find(
+						participant => participant.email === currentUser.email!
+					)
+
+					if (!currentUserParticipant) {
+						participants.push({ email: currentUser.email, timeSpend: 0 })
+					}
+
+					await updateDoc(projectDocRef, {
+						participants: participants,
+					})
+
+					console.log('Użytkownik dołączył do projektu')
+
+					// Wyświetlanie powiadomienia i opóźnienie pojawienia się przycisków Start/Stop
+				} else {
+					console.error('Projekt o podanym ID nie istnieje')
 				}
-
-				let participants: Participant[] = []
-
-				if (projectData.participants) {
-					participants = [...projectData.participants]
-				}
-
-				const currentUserParticipant = participants.find(
-          participant => participant.email === currentUser.email!
-        );
-
-				if (!currentUserParticipant) {
-					participants.push({ email: currentUser.email, timeSpend: 0 })
-				}
-
-				await updateDoc(projectDocRef, {
-					participants: participants,
-				})
-
-				console.log('Użytkownik dołączył do projektu')
-
-				// Wyświetlanie powiadomienia i opóźnienie pojawienia się przycisków Start/Stop
-			
-			} else {
-				console.error('Projekt o podanym ID nie istnieje')
+			} catch (error) {
+				console.error('Błąd podczas dołączania do projektu:', error)
 			}
-		} catch (error) {
-			console.error('Błąd podczas dołączania do projektu:', error)
+
+			setIsJoining(false)
 		}
 	}
-
 	if (!project) {
 		return <div>Loading...</div>
 	}
@@ -192,7 +182,7 @@ const ProjectDetails: React.FC = () => {
 	console.log(userEmail)
 
 	const isParticipant =
-  currentUser &&
+		currentUser &&
 		project.participants &&
 		project.participants.find(participant => participant.email === userEmail)
 
