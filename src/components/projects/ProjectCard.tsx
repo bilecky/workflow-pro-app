@@ -30,8 +30,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 		>
 			{showTooltip && !currentUser && (
 				<div className='bg-red-500 text-white text-sm absolute p-3   z-50'>
-					Tylko dla zalogowanych użytkowników
-				</div>
+Details available for logged users!			</div>
 			)}{' '}
 			{currentUser ? (
 				<Link to={`/projects/${id}`}>
@@ -45,7 +44,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 						<h2 className='text-xl text-zinc-50 font-semibold'>{name}</h2>
 						<p className='text-zinc-200 opacity-70'>{date}</p>
 						<p className='text-zinc-200 whitespace-normal line-clamp-3'>{description}</p>
-						<p className='text-zinc-200 mt-2'>Uczestnicy: {participants.length}</p>
+						<p className='text-zinc-200 mt-2'>Participants: {participants.length}</p>
 					</div>
 				</Link>
 			) : (
@@ -60,7 +59,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 						<h2 className='text-xl text-zinc-50 font-semibold'>{name}</h2>
 						<p className='text-zinc-200 opacity-70'>{date}</p>
 						<p className='text-zinc-200 whitespace-normal line-clamp-3'>{description}</p>
-						<p className='text-zinc-200 mt-2'>Uczestnicy: {participants.length}</p>
+						<p className='text-zinc-200 mt-2'>Participants: <span className='font-bold'>{participants.length}</span> </p>
 					</div>
 				</div>
 			)}

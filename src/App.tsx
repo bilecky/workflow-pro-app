@@ -14,6 +14,9 @@ import PopularProjects from './components/projects/PopularProjects'
 // import { app, database } from './firebase/firebaseConfig';
 
 const App = () => {
+
+
+	
 	return (
 		<BrowserRouter>
 			<Navbar />
