@@ -15,6 +15,8 @@ const Register: React.FC = () => {
 	const [email, setEmail] = useState<string>('')
 
 	const [password, setPassword] = useState<string>('')
+	const [registerErr, setRegisterErr] = useState<boolean>()
+
 
 	const handleEmail = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		setEmail(e.target.value)
@@ -39,6 +41,13 @@ const Register: React.FC = () => {
 			// dispatch(setAuthenticated(true))
 		} catch (error) {
 			console.log('registration problem', error)
+			setRegisterErr(true)
+			const timer = setTimeout(() => {
+				setRegisterErr(false)
+			}, 3000)
+			return () => {
+				clearTimeout(timer)
+			}
 		}
 	}
 
@@ -75,6 +84,11 @@ const Register: React.FC = () => {
 				<button className='bg-lime-400 py-3 px-5 my-2 transition hover:bg-lime-500 hover:text-white'>
 					Register!
 				</button>
+				<div className='w-full overflow-hidden break-all'>
+					{registerErr && (
+						<p className='text-sm text-red-500'>Error! Check your email/password</p>
+					)}
+				</div>
 			</form>
 		</div>
 	)

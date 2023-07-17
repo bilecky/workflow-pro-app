@@ -6,7 +6,7 @@ import BackgroundShape from './helpers/BackgroundShape'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Dashboard from './components/Dashboard/Dashboard'
-import ProjectDetails from './components/Dashboard/Project'
+import ProjectDetails from './components/Dashboard/ProjectDetails'
 import PopularProjects from './components/projects/PopularProjects'
 
 // import { useEffect } from 'react';

@@ -5,6 +5,7 @@ import { auth, database } from '../../firebase/firebaseConfig'
 import { Project } from '../../redux/projectSlice'
 import { useNavigate } from 'react-router-dom'
 import { Participant } from '../../redux/projectSlice'
+import Comments from './Comments'
 
 type ProjectParams = {
 	id: string
@@ -223,6 +224,7 @@ const ProjectDetails: React.FC = () => {
 					) : null}
 				</>
 			)}
+			<Comments/>
 		</div>
 	)
 }
