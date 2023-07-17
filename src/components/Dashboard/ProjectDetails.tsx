@@ -6,9 +6,10 @@ import { Project } from '../../redux/projectSlice'
 import { useNavigate } from 'react-router-dom'
 import { Participant } from '../../redux/projectSlice'
 import Comments from './Comments'
+import Wrapper from '../../helpers/Wrapper'
 
 type ProjectParams = {
-	id: string
+	id: string | null
 }
 
 const ProjectDetails: React.FC = () => {
@@ -190,42 +191,44 @@ const ProjectDetails: React.FC = () => {
 	const isAuthor = currentUser && project.authorId === currentUser.uid
 
 	return (
-		<div>
-			<h2 className='text-2xl font-bold mb-4'>{project.name}</h2>
-			<p>{project.description}</p>
-			<p>Czas spędzony nad projektem: {formatTime(timeElapsed)}</p>
-			{isAuthor || isParticipant ? (
-				<>
-					{!isRunning ? (
-						<button
-							onClick={handleStart}
-							className='px-4 py-2 bg-indigo-600 text-white rounded-md shadow-md hover:bg-indigo-700'
-						>
-							Start
-						</button>
-					) : (
-						<button
-							onClick={handleStop}
-							className='px-4 py-2 bg-red-600 text-white rounded-md shadow-md hover:bg-red-700'
-						>
-							Stop
-						</button>
-					)}
-				</>
-			) : (
-				<>
-					{!isParticipant ? (
-						<button
-							onClick={handleJoinProject}
-							className='px-4 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700'
-						>
-							Dołącz do projektu
-						</button>
-					) : null}
-				</>
-			)}
-			<Comments/>
-		</div>
+		<Wrapper>
+			<div className='bg-gray-800 text-white p-4 mt-5 '>
+				<h2 className='text-2xl font-bold mb-4'>{project.name}</h2>
+				<p>{project.description}</p>
+				<p>Czas spędzony nad projektem: {formatTime(timeElapsed)}</p>
+				{isAuthor || isParticipant ? (
+					<>
+						{!isRunning ? (
+							<button
+								onClick={handleStart}
+								className='px-4 py-2 bg-indigo-600 text-white shadow-md hover:bg-indigo-700'
+							>
+								Start
+							</button>
+						) : (
+							<button
+								onClick={handleStop}
+								className='px-4 py-2 bg-red-600 text-white shadow-md hover:bg-red-700'
+							>
+								Stop
+							</button>
+						)}
+					</>
+				) : (
+					<>
+						{!isParticipant ? (
+							<button
+								onClick={handleJoinProject}
+								className='px-4 py-2 bg-green-600 text-white shadow-md hover:bg-green-700'
+							>
+								Dołącz do projektu
+							</button>
+						) : null}
+					</>
+				)}
+		{	isParticipant &&	<Comments projectId={project.id} />}
+			</div>
+		</Wrapper>
 	)
 }
 
