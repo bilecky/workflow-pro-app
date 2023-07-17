@@ -1,4 +1,4 @@
-import React, { useState, useEffect, } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { AiOutlineUser, AiOutlineProject, AiOutlineLike } from 'react-icons/ai'
 import Wrapper from '../../helpers/Wrapper'
 import PopularProjects from '../projects/PopularProjects'
@@ -10,7 +10,9 @@ const Home: React.FC = () => {
 	const [projectCount, setProjectCount] = useState<number>(0)
 	const [likeCount, setLikeCount] = useState<number>(0)
 	const [elementCount, setElementCount] = useState<number>(0)
-
+	const sectionRef = useRef<HTMLDivElement>(null)
+	const [hasAnimated, setHasAnimated] = useState<boolean>(false)
+	console.log(hasAnimated)
 	const animateCount = (
 		targetCount: number,
 		setCount: React.Dispatch<React.SetStateAction<number>>
@@ -27,27 +29,50 @@ const Home: React.FC = () => {
 			}
 		}, 50)
 	}
+
 	useEffect(() => {
-		setTimeout(() => {
-			animateCount(7, setUserCount)
-			animateCount(7, setProjectCount)
-			animateCount(12, setLikeCount)
-			animateCount(15, setElementCount)
-		}, 800)
+		const observer = new IntersectionObserver(
+			entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting && entry.intersectionRatio >= 1 && !hasAnimated) {
+						// Wywołaj funkcję, gdy sekcja zostanie zobaczona
+						animateCount(7, setUserCount)
+						animateCount(7, setProjectCount)
+						animateCount(12, setLikeCount)
+						animateCount(15, setElementCount)
+						setHasAnimated(true)
+						if (sectionRef.current) {
+							observer.unobserve(sectionRef.current)
+						}
+					}
+				})
+			},
+			{ threshold: 1 }
+		)
+
+		if (sectionRef.current) {
+			observer.observe(sectionRef.current)
+		}
+
+		return () => {
+			if (sectionRef.current) {
+				observer.unobserve(sectionRef.current)
+			}
+		}
 	}, [])
 
 	return (
 		<main>
 			<Wrapper>
-				<Presentation/>
-				<section className='text-center mt-20 font-Montserrat'>
-					<h2 className='text-4xl font-bold text-indigo-50 tracking-wide'>
+				<Presentation />
+				<section ref={sectionRef} className='text-center mt-20 font-Montserrat'>
+					<h2 className='text-4xl font-bold text-indigo-50 tracking-wide  lg:text-5xl'>
 						<span className='relative '>
 							Weekly stats
 							<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-lime-400 opacity-60 '></span>
 						</span>
 					</h2>
-					<div className='flex mt-16 space-x-8 lg:w-4/5 m-auto'>
+					<div ref={sectionRef} className='flex mt-16 space-x-8 lg:w-4/5 m-auto'>
 						<div className='flex-1'>
 							<div className='border-b-4 border-lime-400   p-4 min-h-full'>
 								<div className='flex items-center justify-center '>
@@ -87,7 +112,7 @@ const Home: React.FC = () => {
 					</div>
 				</section>
 				<PopularProjects />
-				<NewProjects/>
+				<NewProjects />
 			</Wrapper>
 		</main>
 	)

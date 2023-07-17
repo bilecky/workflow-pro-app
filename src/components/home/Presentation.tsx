@@ -12,18 +12,18 @@ const Presentation = () => {
 
 	return (
 		<section className='text-center mt-20 lg:w-4/5 m-auto'>
-			<h2 className='text-4xl font-bold text-indigo-50 tracking-wide'>
+			<h2 className='text-4xl lg:text-5xl font-bold text-indigo-50 tracking-wide'>
 				<span className='relative'>
-					Unlock your potential
+					Unleash potential
 					<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-lime-400 opacity-60'></span>
 				</span>
 			</h2>
 
-			<div className=' mt-16 flex flex-col-reverse md:flex-row md:items-center md:justify-between'>
+			<div className=' mt-10 flex flex-col lg:flex-row  items-center justify-center'>
 				{isMobile ? (
 					<>
-						<div className='mb-8 '>
-							<img src={small} alt='header presentation image' className='w-full' />
+						<div className='mb-10'>
+							<img src={small} alt='header presentation image' style={imageStyle} className='w-full ' />
 						</div>
 						<div className='text-indigo-50'>
 							<p>
@@ -33,7 +33,7 @@ const Presentation = () => {
 								create a free account to experience the efficiency firsthand. Supercharge
 								your workflow with Workflow Pro today!
 							</p>
-							<p className='my-8'>
+							<p className='my-5'>
 								Boost your productivity in the modern age with Workflow Pro. Effortlessly
 								track your work time, collaborate with colleagues, and manage projects
 								efficiently. With its intuitive interface and free account option,
@@ -51,8 +51,7 @@ const Presentation = () => {
 					</>
 				) : (
 					<>
-						<div className='md:w-1/2 mb-8 md:mb-0 text-indigo-50 tracking-wide'>
-							{/* Kontener na paragrafy */}
+						<div className='md:w-1/2 mb-8 md:mb-0 text-indigo-50 lg:tracking-wide xl:tracking-wider xl:text-lg h-23'>
 							<p>
 								Discover the power of <span className='text-lime-400'>Workflow Pro</span> in today's fast-paced world.
 								Effortlessly track your work hours, collaborate seamlessly with your team,
@@ -60,7 +59,7 @@ const Presentation = () => {
 								create a free account to experience the efficiency firsthand. Supercharge
 								your workflow with Workflow Pro today!
 							</p>
-							<p className='my-8'>
+							<p className='my-5'>
 								Boost your productivity in the modern age with Workflow Pro. Effortlessly
 								track your work time, collaborate with colleagues, and manage projects
 								efficiently. With its intuitive interface and free account option,
@@ -76,7 +75,6 @@ const Presentation = () => {
 							</p>
 						</div>
 						<div className='md:w-1/2'>
-							{/* Kontener na header presentation image */}
 							<img src={big} alt='header presentation image' style={imageStyle} />
 						</div>
 					</>
