@@ -8,7 +8,7 @@ import { Participant } from '../../redux/projectSlice'
 import Comments from './Comments'
 import Wrapper from '../../helpers/Wrapper'
 import { BsClock } from 'react-icons/bs'
-import { AiOutlineProject } from 'react-icons/ai'
+import { AiOutlineProject, AiOutlineUser } from 'react-icons/ai'
 type ProjectParams = {
 	id: string | null
 }
@@ -190,56 +190,77 @@ const ProjectDetails: React.FC = () => {
 		project.participants.find(participant => participant.email === userEmail)
 
 	const isAuthor = currentUser && project.authorId === currentUser.uid
-
+	console.log(typeof isParticipant)
 	return (
 		<Wrapper>
-			<div className='bg-zinc-800 text-white p-4 mt-5 lg:w-4/5 mx-auto'>
-				<div className='relative'>
-					<img src={project.image} alt= {project.name} className='w-full h-96 object-cover' />
-					<div className='absolute top-0 left-0 w-full h-full bg-green-500 opacity-50'></div>
-				</div>
-				<h2 className='text-2xl font-bold m-4 text-center'>{project.name}</h2>
-				<h4 className='my-4 flex items-center'>
-					<AiOutlineProject className=' text-xl mr-2' />
-					Description:
-				</h4>
-				<p className='my-4'>{project.description}</p>
-
-				{isAuthor || isParticipant ? (
-					<>
-						<h4 className='mb-4 flex items-center'>
-							<BsClock className=' text-xl mr-2' /> TIME SPEND: {formatTime(timeElapsed)}
+			<section className='bg-zinc-800 text-white p-4 mt-5 lg:w-4/5 mx-auto'>
+				<div className='lg:flex '>
+					<div className='lg:w-1/2 lg:pr-4'>
+						<div className='relative'>
+							<img
+								src={project.image}
+								alt={project.name}
+								className='w-full h-96 object-cover'
+							/>
+							<div className='absolute top-0 left-0 w-full h-full bg-green-500 opacity-50'></div>
+						</div>
+						<h2 className='text-2xl font-bold m-4 text-center'>{project.name}</h2>
+						<h4 className='my-4 flex items-center text-xl'>
+							<AiOutlineProject className=' text-xl mr-2  text-lime-500' />
+							Description:
 						</h4>
-						{!isRunning ? (
-							<button
-								onClick={handleStart}
-								className='px-10 py-3 bg-indigo-600 text-white shadow-md hover:bg-indigo-700'
-							>
-								Start
-							</button>
+						<p className='my-4'>{project.description}</p>
+
+						{isAuthor || isParticipant ? (
+							<>
+								<h4 className='mb-4 flex items-center'>
+									<BsClock className='text-lime-500 text-xl mr-2' /> TIME SPEND:{' '}
+									{formatTime(timeElapsed)}
+								</h4>
+								{!isRunning ? (
+									<button
+										onClick={handleStart}
+										className=' text-xl px-10 py-2 bg-indigo-600 text-white shadow-md hover:bg-indigo-700'
+									>
+										Start
+									</button>
+								) : (
+									<button
+										onClick={handleStop}
+										className=' text-xl px-10 py-2 bg-red-600 text-white shadow-md hover:bg-red-700'
+									>
+										Stop
+									</button>
+								)}
+							</>
 						) : (
-							<button
-								onClick={handleStop}
-								className='px-10 py-3 bg-red-600 text-white shadow-md hover:bg-red-700'
-							>
-								Stop
-							</button>
+							<>
+								{!isParticipant ? (
+									<button
+										onClick={handleJoinProject}
+										className='px-10 py-3 bg-green-600 text-white shadow-md hover:bg-green-700'
+									>
+										Join project!{' '}
+									</button>
+								) : null}
+							</>
 						)}
-					</>
-				) : (
-					<>
-						{!isParticipant ? (
-							<button
-								onClick={handleJoinProject}
-								className='px-10 py-3 bg-green-600 text-white shadow-md hover:bg-green-700'
-							>
-								Join project!{' '}
-							</button>
-						) : null}
-					</>
-				)}
+					</div>
+					<div className='w-1/2  lg:pl-4 hidden lg:block'>
+						<h3 className='font-bold text-xl'>Participants:</h3>
+						<ul>
+							{project.participants.map(participant => (
+								<li className='flex items-center'>
+									<AiOutlineUser className ='mr-2 text-xl text-lime-500' />
+									{participant.email}
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+
 				{isParticipant && <Comments projectId={project.id} />}
-			</div>
+			</section>
 		</Wrapper>
 	)
 }

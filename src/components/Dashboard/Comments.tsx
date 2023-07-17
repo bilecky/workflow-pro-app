@@ -17,6 +17,7 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 	const [comments, setComments] = useState<Comment[]>([])
 	const [commentInput, setCommentInput] = useState<string>('')
 
+  const currentUser = auth.currentUser
 	const fetchComments = async () => {
 		const commentsQuery = query(
 			collection(database, 'comments'),
@@ -52,7 +53,8 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 	}
 
 	return (
-		<div className='bg-zinc-700 p-4 mt-10 '>
+		<div className='bg-zinc-700 p-4 mt-10  '>
+         <h3 className='font-bold text-xl pb-5'>Conversations:</h3>
 			<ul>
 				{comments.map((comment: Comment) => (
 					<li key={comment.id} className='mb-4 p-3 bg-zinc-600 shadow-lg'>
@@ -64,20 +66,19 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 				))}
 			</ul>
 
-			<form onSubmit={handleSubmit} className='mt-4'>
-				<input
-					type='text'
-					placeholder='Wpisz komentarz'
+			<form onSubmit={handleSubmit} className='mt-4 text-center'>
+            <h4></h4>
+				<textarea
+					placeholder='Enter your comment'
 					value={commentInput}
 					onChange={e => setCommentInput(e.target.value)}
-					className='w-full lg:w-3/5 block px-4 py-2 border  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+					className='w-full lg:w-4/5 block px-4 py-2 border text-zinc-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 m-auto'
 				/>
 				<button
 					type='submit'
-					className='px-10 py-3 mt-4 bg-indigo-600 text-white  shadow-md hover:bg-indigo-700'
+					className='w-full lg:w-2/5 px-10 py-3 mt-4 bg-indigo-600 text-white  shadow-md hover:bg-indigo-700 text-xl'
 				>
-					Dodaj komentarz
-				</button>
+Add Comment				</button>
 			</form>
 		</div>
 	)

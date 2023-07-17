@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 
-const PopularProjects: React.FC = () => {
+const NewProjects: React.FC = () => {
 	const dispatch: AppDispatch = useDispatch()
 	const projects = useSelector((state: RootState) => state.projects.data)
 	const isLoading = useSelector((state: RootState) => state.projects.isLoading)
@@ -19,20 +19,21 @@ const PopularProjects: React.FC = () => {
 	const sliderRef = useRef<HTMLDivElement>(null)
 
 	const sortedProjects = projects
-		.slice(0, 5)
-		.sort((a, b) => Object.keys(b.participants).length - Object.keys(a.participants).length);
+		.slice(0, 8)
+		.sort((a, b) => b.participants.length - a.participants.length);
 
 	useEffect(() => {
 		dispatch(fetchProjects())
 	}, [dispatch])
 
-	if (error) {
+   if (error) {
       return (
         <div className="mt-20 flex items-center justify-center">
           <p className="text-red-500 text-lg font-bold">{`Error: ${error}`}</p>
         </div>
       );
     }
+    
 
 	const handleScrollLeft = () => {
 		if (sliderRef.current) {
@@ -54,8 +55,7 @@ const PopularProjects: React.FC = () => {
 		<section className='text-center mt-20 '>
 			<h2 className='text-4xl font-bold text-indigo-50'>
 				<span className='relative '>
-					Popular projects
-					<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-lime-400 opacity-60'></span>
+New Projects					<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-lime-400 opacity-60'></span>
 				</span>
 			</h2>
 			{isLoading ? (
@@ -99,4 +99,4 @@ const PopularProjects: React.FC = () => {
 	)
 }
 
-export default PopularProjects
+export default NewProjects

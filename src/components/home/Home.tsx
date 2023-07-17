@@ -2,6 +2,7 @@ import React, { useState, useEffect, } from 'react'
 import { AiOutlineUser, AiOutlineProject, AiOutlineLike } from 'react-icons/ai'
 import Wrapper from '../../helpers/Wrapper'
 import PopularProjects from '../projects/PopularProjects'
+import NewProjects from '../projects/NewProjects'
 
 const Home: React.FC = () => {
 	const [userCount, setUserCount] = useState<number>(0)
@@ -84,6 +85,7 @@ const Home: React.FC = () => {
 					</div>
 				</section>
 				<PopularProjects />
+				<NewProjects/>
 			</Wrapper>
 		</main>
 	)

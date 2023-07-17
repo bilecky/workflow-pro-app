@@ -42,7 +42,8 @@ export const fetchProjects = createAsyncThunk('projects/fetchProjects', async ()
 
 		return projectData
 	} catch (err) {
-		throw new Error('ERROR WHILE DOWNLOADING PROJECTS')
+		throw new Error('Firebase Database Problem')
+
 	}
 })
 
