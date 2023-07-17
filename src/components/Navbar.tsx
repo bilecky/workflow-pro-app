@@ -66,6 +66,7 @@ const Navbar: React.FC = () => {
 							</Link>
 						</div>
 						<div className='hidden sm:block'>
+							<nav>
 							<ul className='space-x-4 flex'>
 								<li>
 									<Link to='/about' className='text-white relative group'>
@@ -73,12 +74,15 @@ const Navbar: React.FC = () => {
 										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
 									</Link>
 								</li>
-								<li>
+								{
+									user && 	<li>
 									<Link to='/dashboard' className='text-white relative group'>
 										Dashboard
 										<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
 									</Link>
 								</li>
+								}
+							
 								{!user && (
 									<>
 										<li>
@@ -112,6 +116,7 @@ const Navbar: React.FC = () => {
 									</button>
 								</li>
 							</ul>
+							</nav>
 						</div>
 
 						<div className='sm:hidden relative'>

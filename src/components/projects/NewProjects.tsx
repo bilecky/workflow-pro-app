@@ -8,7 +8,6 @@ import ProjectCard from './ProjectCard'
 import { Link } from 'react-router-dom'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
-
 const NewProjects: React.FC = () => {
 	const dispatch: AppDispatch = useDispatch()
 	const projects = useSelector((state: RootState) => state.projects.data)
@@ -20,20 +19,19 @@ const NewProjects: React.FC = () => {
 
 	const sortedProjects = projects
 		.slice(0, 8)
-		.sort((a, b) => b.participants.length - a.participants.length);
+		.sort((a, b) => b.participants.length - a.participants.length)
 
 	useEffect(() => {
 		dispatch(fetchProjects())
 	}, [dispatch])
 
-   if (error) {
-      return (
-        <div className="mt-20 flex items-center justify-center">
-          <p className="text-red-500 text-lg font-bold">{`Error: ${error}`}</p>
-        </div>
-      );
-    }
-    
+	if (error) {
+		return (
+			<div className='m-20 flex items-center justify-center'>
+				<p className='text-red-500 text-lg font-bold'>{`Error: ${error}`}</p>
+			</div>
+		)
+	}
 
 	const handleScrollLeft = () => {
 		if (sliderRef.current) {
@@ -53,9 +51,10 @@ const NewProjects: React.FC = () => {
 	}
 	return (
 		<section className='text-center mt-20 '>
-			<h2 className='text-4xl font-bold text-indigo-50'>
+			<h2 className='text-4xl font-bold text-indigo-50 tracking-wide'>
 				<span className='relative '>
-New Projects					<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-lime-400 opacity-60'></span>
+					New Projects{' '}
+					<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-lime-400 opacity-60'></span>
 				</span>
 			</h2>
 			{isLoading ? (
@@ -66,8 +65,8 @@ New Projects					<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom
 			) : (
 				<div className='mt-16 relative flex items-center '>
 					<FaChevronLeft
-							className='text-indigo-50 cursor-pointer p-1 '
-                     size={26}
+						className='text-indigo-50 cursor-pointer p-1 '
+						size={26}
 						onClick={handleScrollLeft}
 					/>
 					<div

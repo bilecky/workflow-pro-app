@@ -3,6 +3,7 @@ import { AiOutlineUser, AiOutlineProject, AiOutlineLike } from 'react-icons/ai'
 import Wrapper from '../../helpers/Wrapper'
 import PopularProjects from '../projects/PopularProjects'
 import NewProjects from '../projects/NewProjects'
+import Presentation from './Presentation'
 
 const Home: React.FC = () => {
 	const [userCount, setUserCount] = useState<number>(0)
@@ -38,8 +39,9 @@ const Home: React.FC = () => {
 	return (
 		<main>
 			<Wrapper>
+				<Presentation/>
 				<section className='text-center mt-20 font-Montserrat'>
-					<h2 className='text-4xl font-bold text-indigo-50'>
+					<h2 className='text-4xl font-bold text-indigo-50 tracking-wide'>
 						<span className='relative '>
 							Weekly stats
 							<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-lime-400 opacity-60 '></span>
