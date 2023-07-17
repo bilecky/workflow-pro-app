@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import { Participant } from '../../redux/projectSlice'
 import Comments from './Comments'
 import Wrapper from '../../helpers/Wrapper'
-
+import { BsClock } from 'react-icons/bs'
+import { AiOutlineProject } from 'react-icons/ai'
 type ProjectParams = {
 	id: string | null
 }
@@ -192,23 +193,34 @@ const ProjectDetails: React.FC = () => {
 
 	return (
 		<Wrapper>
-			<div className='bg-gray-800 text-white p-4 mt-5 '>
-				<h2 className='text-2xl font-bold mb-4'>{project.name}</h2>
-				<p>{project.description}</p>
-				<p>Czas spędzony nad projektem: {formatTime(timeElapsed)}</p>
+			<div className='bg-zinc-800 text-white p-4 mt-5 lg:w-4/5 mx-auto'>
+				<div className='relative'>
+					<img src={project.image} alt= {project.name} className='w-full h-96 object-cover' />
+					<div className='absolute top-0 left-0 w-full h-full bg-green-500 opacity-50'></div>
+				</div>
+				<h2 className='text-2xl font-bold m-4 text-center'>{project.name}</h2>
+				<h4 className='my-4 flex items-center'>
+					<AiOutlineProject className=' text-xl mr-2' />
+					Description:
+				</h4>
+				<p className='my-4'>{project.description}</p>
+
 				{isAuthor || isParticipant ? (
 					<>
+						<h4 className='mb-4 flex items-center'>
+							<BsClock className=' text-xl mr-2' /> TIME SPEND: {formatTime(timeElapsed)}
+						</h4>
 						{!isRunning ? (
 							<button
 								onClick={handleStart}
-								className='px-4 py-2 bg-indigo-600 text-white shadow-md hover:bg-indigo-700'
+								className='px-10 py-3 bg-indigo-600 text-white shadow-md hover:bg-indigo-700'
 							>
 								Start
 							</button>
 						) : (
 							<button
 								onClick={handleStop}
-								className='px-4 py-2 bg-red-600 text-white shadow-md hover:bg-red-700'
+								className='px-10 py-3 bg-red-600 text-white shadow-md hover:bg-red-700'
 							>
 								Stop
 							</button>
@@ -219,14 +231,14 @@ const ProjectDetails: React.FC = () => {
 						{!isParticipant ? (
 							<button
 								onClick={handleJoinProject}
-								className='px-4 py-2 bg-green-600 text-white shadow-md hover:bg-green-700'
+								className='px-10 py-3 bg-green-600 text-white shadow-md hover:bg-green-700'
 							>
-								Dołącz do projektu
+								Join project!{' '}
 							</button>
 						) : null}
 					</>
 				)}
-		{	isParticipant &&	<Comments projectId={project.id} />}
+				{isParticipant && <Comments projectId={project.id} />}
 			</div>
 		</Wrapper>
 	)
