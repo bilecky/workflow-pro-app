@@ -3,10 +3,9 @@
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400i,700&display=swap');
 
-
 body {
-	background-color: rgb(63 63 70);}
-
+	background-color: rgb(63 63 70);
+}
 
 .menu-off {
 	transform: translateX(100%);
@@ -21,12 +20,29 @@ body {
 }
 
 .layer-on {
-  transform: translateX(0);
-transition: .1s;
+	transform: translateX(0);
+	transition: 0.1s;
 }
 .layer-off {
-  transform: translateX(100%);
-transition: .3s;
-visibility: hidden;
+	transform: translateX(100%);
+	transition: 0.3s;
+	visibility: hidden;
+}
+::-webkit-scrollbar {
+	width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background-color: rgba(100, 163, 13, 0.8);	border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }

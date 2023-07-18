@@ -4,7 +4,7 @@ import Wrapper from '../../helpers/Wrapper'
 const Footer = () => {
 	return (
 		<Wrapper>
-			<footer className='border-t border-lime-500 py-4 lg:w-4/5 mt-10  m-auto'>
+			<footer className='border-t border-lime-500 py-4 lg:w-4/5 mt-20  m-auto'>
 			
 				<div className='text-center xl:text-lg'>
 					<p className='text-white'>Designed & developed by</p>
