@@ -17,9 +17,12 @@ const NewProjects: React.FC = () => {
 	const [scrollOffset, setScrollOffset] = useState<number>(0)
 	const sliderRef = useRef<HTMLDivElement>(null)
 
-	const sortedProjects = projects
-		.slice(0, 8)
-		.sort((a, b) => b.participants.length - a.participants.length)
+	const sortedProjects = projects.slice(0, 8).sort((a, b) => {
+		const dateA = new Date(a.date)
+		const dateB = new Date(b.date)
+
+		return dateB - dateA
+	})
 
 	useEffect(() => {
 		dispatch(fetchProjects())

@@ -10,7 +10,7 @@ import Wrapper from '../../helpers/Wrapper'
 import { BsClock } from 'react-icons/bs'
 import { AiOutlineProject, AiOutlineUser } from 'react-icons/ai'
 type ProjectParams = {
-	id: string | null
+	id: string | undefined
 }
 
 const ProjectDetails: React.FC = () => {
@@ -23,21 +23,28 @@ const ProjectDetails: React.FC = () => {
 		}
 	}, [navigate, currentUser])
 
-	const { id } = useParams<ProjectParams>()
+	const { id = '' } = useParams<ProjectParams>()
 
 	const [project, setProject] = useState<Project | null>(null)
 	const [isRunning, setIsRunning] = useState<boolean>(false)
 	const [timeElapsed, setTimeElapsed] = useState<number>(0)
 	const [timer, setTimer] = useState<NodeJS.Timeout | null>(null)
 	const [joining, setIsJoining] = useState<boolean>(false)
+	const [leaving, setIsLeaving] = useState<boolean>(false)
+
+	const getProjectData = async (projectId: string) => {
+		const projectsCollectionRef = collection(database, 'projects')
+		const projectQuery = query(projectsCollectionRef, where('id', '==', projectId))
+		const querySnapshot = await getDocs(projectQuery)
+
+		return querySnapshot
+	}
 
 	useEffect(() => {
 		const fetchProject = async () => {
 			try {
 				if (id) {
-					const projectsCollectionRef = collection(database, 'projects')
-					const projectQuery = query(projectsCollectionRef, where('id', '==', id))
-					const querySnapshot = await getDocs(projectQuery)
+					const querySnapshot = await getProjectData(id)
 
 					if (!querySnapshot.empty) {
 						const projectData = querySnapshot.docs[0].data() as Project
@@ -53,7 +60,7 @@ const ProjectDetails: React.FC = () => {
 		}
 
 		fetchProject()
-	}, [id, currentUser, joining])
+	}, [id, currentUser, joining, leaving])
 
 	const getUserTimeElapsed = (project: Project, email: string | undefined): number => {
 		if (!email || !project || !project.participants) {
@@ -89,9 +96,8 @@ const ProjectDetails: React.FC = () => {
 
 		const currentUser = auth.currentUser
 		if (currentUser && project) {
-			const projectsCollectionRef = collection(database, 'projects')
-			const projectQuery = query(projectsCollectionRef, where('id', '==', id))
-			const querySnapshot = await getDocs(projectQuery)
+			const querySnapshot = await getProjectData(id)
+
 			if (!querySnapshot.empty) {
 				const docRef = querySnapshot.docs[0].ref
 
@@ -116,55 +122,85 @@ const ProjectDetails: React.FC = () => {
 		window.onbeforeunload = null
 	}
 
-	const handleJoinProject = async () => {
-		if (!joining && currentUser && project) {
-			setIsJoining(true)
+	const handleLeaveProject = async () => {
+		if (!leaving && currentUser && project) {
+			setIsLeaving(true)
 
 			try {
-				const projectsCollectionRef = collection(database, 'projects')
-				const projectQuery = query(projectsCollectionRef, where('id', '==', id))
-				const querySnapshot = await getDocs(projectQuery)
+				const querySnapshot = await getProjectData(id)
 
 				if (!querySnapshot.empty) {
 					const projectDocRef = querySnapshot.docs[0].ref
 					const projectData = querySnapshot.docs[0].data() as Project
 
 					if (projectData.authorId === currentUser.uid) {
-						console.log('Jesteś już twórcą tego projektu.')
+						console.log('Jestes tworca projektu, nie mozesz go opuscic')
 						return
 					}
-
-					let participants: Participant[] = []
-
-					if (projectData.participants) {
-						participants = [...projectData.participants]
-					}
-
-					const currentUserParticipant = participants.find(
-						participant => participant.email === currentUser.email!
+					const updatedParticipants: Participant[] = projectData.participants.filter(
+						(participant: Participant) => participant.email !== currentUser.email
 					)
 
-					if (!currentUserParticipant) {
-						participants.push({ email: currentUser.email, timeSpend: 0 })
-					}
-
 					await updateDoc(projectDocRef, {
-						participants: participants,
+						participants: updatedParticipants,
 					})
-
-					console.log('Użytkownik dołączył do projektu')
-
-					// Wyświetlanie powiadomienia i opóźnienie pojawienia się przycisków Start/Stop
+					console.log('Użytkownik opuścił projekt')
 				} else {
-					console.error('Projekt o podanym ID nie istnieje')
+					console.error('This project does not exist')
 				}
 			} catch (error) {
-				console.error('Błąd podczas dołączania do projektu:', error)
+				console.error('ERROR DURIN LEAVING THE PROJECT: ', error)
+			}
+			setIsLeaving(false)
+		}
+	}
+
+	const handleJoinProject = async () => {
+		if (joining || !currentUser || !project) {
+			return
+		}
+
+		setIsJoining(true)
+
+		try {
+			const querySnapshot = await getProjectData(id)
+
+			if (querySnapshot.empty) {
+				console.error('Projekt o podanym ID nie istnieje')
+				return
 			}
 
+			const projectDocRef = querySnapshot.docs[0].ref
+			const projectData = querySnapshot.docs[0].data() as Project
+
+			if (projectData.authorId === currentUser.uid) {
+				console.log('Jesteś już twórcą tego projektu.')
+				return
+			}
+
+			const participants: Participant[] = projectData.participants
+				? [...projectData.participants]
+				: []
+			const currentUserParticipant = participants.find(
+				participant => participant.email === currentUser.email
+			)
+
+			if (!currentUserParticipant) {
+				participants.push({ email: currentUser.email!, timeSpend: 0 })
+			}
+
+			await updateDoc(projectDocRef, {
+				participants: participants,
+			})
+
+			console.log('Użytkownik dołączył do projektu')
+		} catch (error) {
+			console.error('Błąd podczas dołączania do projektu:', error)
+		} finally {
 			setIsJoining(false)
 		}
 	}
+
 	if (!project) {
 		return <div>Loading...</div>
 	}
@@ -213,23 +249,31 @@ const ProjectDetails: React.FC = () => {
 
 						{isAuthor || isParticipant ? (
 							<>
-								<h4 className='mb-4 flex items-center'>
-									<BsClock className='text-lime-500 text-xl mr-2' /> TIME SPEND:{' '}
-									{formatTime(timeElapsed)}
+								<h4 className='mb-4 flex items-center text-xl'>
+									<BsClock className='text-lime-500 text-xl mr-2' /> Time spend:
+									<span className='ml-2 font-bold tracking-widest'>
+										{' '}
+										{formatTime(timeElapsed)}
+									</span>
 								</h4>
 								{!isRunning ? (
 									<button
 										onClick={handleStart}
-										className=' text-xl px-10 py-2 bg-indigo-600 text-white shadow-md hover:bg-indigo-700'
+										className='transition-colors w-full lg:w-2/5 mb-6 text-xl px-10 py-2 bg-indigo-600 text-white shadow-md hover:bg-indigo-700'
 									>
 										Start
 									</button>
 								) : (
 									<button
 										onClick={handleStop}
-										className=' text-xl px-10 py-2 bg-red-600 text-white shadow-md hover:bg-red-700'
+										className='transition-colors w-full lg:w-2/5  mb-6 text-xl px-10 py-2 bg-red-500 text-white shadow-md hover:bg-red-700'
 									>
 										Stop
+									</button>
+								)}
+								{isParticipant && (
+									<button onClick={handleLeaveProject} className='transition-colors block w-full lg:w-2/5 text-xl px-10 py-2 bg-red-500 text-white shadow-md hover:bg-red-700 '>
+										Leave project
 									</button>
 								)}
 							</>
@@ -240,7 +284,7 @@ const ProjectDetails: React.FC = () => {
 										onClick={handleJoinProject}
 										className='px-10 py-3 bg-green-600 text-white shadow-md hover:bg-green-700'
 									>
-										Join project!{' '}
+										Join project!
 									</button>
 								) : null}
 							</>
@@ -251,7 +295,7 @@ const ProjectDetails: React.FC = () => {
 						<ul>
 							{project.participants.map(participant => (
 								<li className='flex items-center'>
-									<AiOutlineUser className ='mr-2 text-xl text-lime-500' />
+									<AiOutlineUser className='mr-2 text-xl text-lime-500' />
 									{participant.email}
 								</li>
 							))}
