@@ -34,8 +34,7 @@ const Home: React.FC = () => {
 		const observer = new IntersectionObserver(
 			entries => {
 				entries.forEach(entry => {
-					if (entry.isIntersecting && entry.intersectionRatio >= 1 && !hasAnimated) {
-						// Wywołaj funkcję, gdy sekcja zostanie zobaczona
+					if (entry.isIntersecting && entry.intersectionRatio >= 0.1 && !hasAnimated) {
 						animateCount(7, setUserCount)
 						animateCount(7, setProjectCount)
 						animateCount(12, setLikeCount)
@@ -47,7 +46,7 @@ const Home: React.FC = () => {
 					}
 				})
 			},
-			{ threshold: 1 }
+			{ threshold: 0.1 }
 		)
 
 		if (sectionRef.current) {
@@ -97,9 +96,7 @@ const Home: React.FC = () => {
 									<AiOutlineLike className='text-4xl text-lime-400' />
 								</div>
 								<p className='text-4xl font-bold text-indigo-50 my-2'>{likeCount}</p>
-								<p ref={sectionRef} className='text-indigo-50'>
-									New Likes
-								</p>
+								<p className='text-indigo-50'>New Likes</p>
 							</div>
 						</div>
 						<div className='flex-1 sm:w-1/2 lg:w-1/4 hidden sm:block'>
@@ -113,7 +110,10 @@ const Home: React.FC = () => {
 						</div>
 					</div>
 				</section>
+
+				<div ref={sectionRef}></div>
 				<PopularProjects />
+
 				<NewProjects />
 			</Wrapper>
 		</main>
