@@ -40,7 +40,7 @@ const ProjectList: React.FC = () => {
        };
    
        fetchProjects();
-   }, []);
+   }, [projects]);
  
    return (
      <div className="h-30vh overflow-x-auto w-full">

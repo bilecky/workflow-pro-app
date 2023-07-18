@@ -271,7 +271,7 @@ const ProjectDetails: React.FC = () => {
 										Stop
 									</button>
 								)}
-								{isParticipant && (
+								{isParticipant&& !isAuthor && (
 									<button onClick={handleLeaveProject} className='transition-colors block w-full lg:w-2/5 text-xl px-10 py-2 bg-red-500 text-white shadow-md hover:bg-red-700 '>
 										Leave project
 									</button>
@@ -294,7 +294,7 @@ const ProjectDetails: React.FC = () => {
 						<h3 className='font-bold text-xl'>Participants:</h3>
 						<ul>
 							{project.participants.map(participant => (
-								<li className='flex items-center'>
+								<li key = {participant.email} className='flex items-center'>
 									<AiOutlineUser className='mr-2 text-xl text-lime-500' />
 									{participant.email}
 								</li>

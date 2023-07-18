@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { Project, Participant } from '../../redux/projectSlice';
 import { auth, database } from '../../firebase/firebaseConfig';
 import { addDoc, collection, CollectionReference } from 'firebase/firestore';
@@ -16,6 +16,8 @@ const AddProject: React.FC<AddProjectProps> = () => {
     date: '',
   });
 
+
+useEffect(() => {}, [project])
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
