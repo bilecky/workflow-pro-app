@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
 											</>
 										)}
 										{logoutMenu && (
-											<div className='absolute bg-slate-50 hover:text-lime-400 hover:bg-zinc-600 transition text-black -left-4 -bottom-14 w-full'>
+											<div className='absolute z-50 bg-slate-50 hover:text-lime-400 hover:bg-zinc-600 transition text-black -left-4 -bottom-14 w-full'>
 												<div onClick={handleLogoutBtn} className='px-6 py-3'>Logout</div>
 											</div>
 										)}

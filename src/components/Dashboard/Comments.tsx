@@ -57,7 +57,7 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 	}, [])
 
 	return (
-		<div className='bg-zinc-700 p-4 mt-10  '>
+		<div className='bg-zinc-700 p-4 mt-2  '>
 			<h3 className='font-bold text-xl pb-5'>Conversations:</h3>
 			<ul className=''>
 				{comments.map((comment: Comment) => (

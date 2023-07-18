@@ -25,7 +25,7 @@ const Dashboard: React.FC = () => {
     <Wrapper>
       <div className='min-h-screen py-10 lg:w-4/5 m-auto relative'>
         <div className='absolute left-0 top-0 w-full h-full bg-zinc-800 -z-10 opacity-60'></div>
-        <div className='max-w-screen-lg px-4 text-center'>
+        <div className='max-w-screen-lg px-4 text-center m-auto' >
           <h5 className='text-2xl text-white mb-4'>
             Hello, <span className='text-indigo-500 font-bold'>{user}</span>!
           </h5>

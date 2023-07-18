@@ -3,10 +3,14 @@ import { Project, Participant } from '../../redux/projectSlice'
 import { auth, database } from '../../firebase/firebaseConfig'
 import { addDoc, collection, CollectionReference } from 'firebase/firestore'
 import { v4 as uuidv4 } from 'uuid'
+import Wrapper from '../../helpers/Wrapper'
+import { FiArrowLeft } from 'react-icons/fi'
+import { useNavigate } from 'react-router'
 
 interface AddProjectProps {}
 
 const AddProject: React.FC<AddProjectProps> = () => {
+	const navigate = useNavigate()
 	const [project, setProject] = useState<Project>({
 		id: '',
 		name: '',
@@ -54,62 +58,81 @@ const AddProject: React.FC<AddProjectProps> = () => {
 
 				await addDoc(projectsCollectionRef, newProject)
 				console.log('Projekt został pomyślnie dodany do Firestore')
+				navigate('/')
 			}
 		} catch (error) {
 			console.log('Błąd podczas dodawania projektu:', error)
 		}
 	}
+	const handleGoBack = () => {
+		navigate('/dashboard') // Przekierowanie do "/dashboard" po kliknięciu przycisku
+	}
 
 	return (
-		<form onSubmit={handleSubmit} className='flex items-center justify-center h-screen'>
-			<div className='w-96'>
-				<div className='mb-4'>
-					<label htmlFor='name' className='block text-sm font-medium text-white'>
-						Project Name:
-					</label>
-					<input
-						type='text'
-						id='name'
-						name='name'
-						value={project.name}
-						onChange={handleInputChange}
-						className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2 text-gray-900 bg-white border border-gray-300 rounded-md text-sm'
-					/>
-				</div>
-				<div className='mb-4'>
-					<label htmlFor='description' className='block text-sm font-medium text-white'>
-						Project Description:
-					</label>
-					<textarea
-						id='description'
-						name='description'
-						value={project.description}
-						onChange={handleInputChange}
-						className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2 text-gray-900 bg-white border border-gray-300 rounded-md text-sm'
-					/>
-				</div>
-				<div className='mb-4'>
-					<label htmlFor='image' className='block text-sm font-medium text-white'>
-						Image URL:
-					</label>
-					<input
-						type='text'
-						id='image'
-						name='image'
-						value={project.image}
-						onChange={handleInputChange}
-						className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2 text-gray-900 bg-white border border-gray-300 rounded-md text-sm'
-					/>
-				</div>
+		<Wrapper>
+			<form
+				onSubmit={handleSubmit}
+				className='flex items-center justify-center h-[770px] '
+			>
+				<div className='w-96'>
+					<div className='mb-4'>
+						<label htmlFor='name' className='block text-sm font-medium text-white'>
+							Project Name:
+						</label>
+						<input
+							required
+							type='text'
+							id='name'
+							name='name'
+							value={project.name}
+							onChange={handleInputChange}
+							className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2 text-gray-900 bg-white border border-gray-300  text-sm'
+						/>
+					</div>
+					<div className='mb-4'>
+						<label htmlFor='description' className='block text-sm font-medium text-white'>
+							Project Description:
+						</label>
+						<textarea
+							required
+							id='description'
+							name='description'
+							value={project.description}
+							onChange={handleInputChange}
+							className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2 text-gray-900 bg-white border border-gray-300  text-sm'
+						/>
+					</div>
+					<div className='mb-4'>
+						<label htmlFor='image' className='block text-sm font-medium text-white'>
+							Image URL:
+						</label>
+						<input
+							required
+							type='text'
+							id='image'
+							name='image'
+							value={project.image}
+							onChange={handleInputChange}
+							className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2 text-gray-900 bg-white border border-gray-300  text-sm'
+						/>
+					</div>
 
-				<button
-					type='submit'
-					className='w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-				>
-					Add Project
-				</button>
-			</div>
-		</form>
+					<button
+						type='submit'
+						className=' transition-colors mt-4 w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-base font-medium  text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+					>
+						Add Project
+					</button>
+					<button
+						type='button'
+						onClick={handleGoBack}
+						className=' transition-colors mt-4 w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-base font-medium  text-white bg-lime-600 hover:bg-lime-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+					>
+						Back to dashboard{' '}
+					</button>
+				</div>
+			</form>
+		</Wrapper>
 	)
 }
 
