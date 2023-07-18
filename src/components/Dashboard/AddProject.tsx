@@ -58,7 +58,7 @@ const AddProject: React.FC<AddProjectProps> = () => {
 
 				await addDoc(projectsCollectionRef, newProject)
 				console.log('Projekt został pomyślnie dodany do Firestore')
-				navigate('/')
+				navigate('/dashboard')
 			}
 		} catch (error) {
 			console.log('Błąd podczas dodawania projektu:', error)
@@ -67,12 +67,16 @@ const AddProject: React.FC<AddProjectProps> = () => {
 	const handleGoBack = () => {
 		navigate('/dashboard') // Przekierowanie do "/dashboard" po kliknięciu przycisku
 	}
+	const style = {
+		height: 'calc(100vh - 210px)'
+	 };
 
 	return (
 		<Wrapper>
 			<form
+			style={style}
 				onSubmit={handleSubmit}
-				className='flex items-center justify-center h-[770px] '
+				className='flex items-center justify-center   '
 			>
 				<div className='w-96'>
 					<div className='mb-4'>

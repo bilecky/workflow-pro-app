@@ -236,7 +236,8 @@ const ProjectDetails: React.FC = () => {
 
   return (
     <Wrapper>
-      <section className="bg-zinc-800 text-white p-4 mt-5 lg:w-4/5 mx-auto relative">
+      <section className=" text-white p-4 mt-5 lg:w-4/5 mx-auto relative">
+      <div className='absolute left-0 top-0 w-full h-full bg-zinc-800 -z-10 opacity-60'></div>
         <div className="w-full text-right absolute right-5 top-5 z-10">
           <button
             onClick={handleGoBack}

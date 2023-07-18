@@ -23,7 +23,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <Wrapper>
-      <div className='min-h-screen py-10 lg:w-4/5 m-auto relative'>
+      <div className='max-h-[1000px] py-10 lg:w-4/5 m-auto relative'>
         <div className='absolute left-0 top-0 w-full h-full bg-zinc-800 -z-10 opacity-60'></div>
         <div className='max-w-screen-lg px-4 text-center m-auto' >
           <h5 className='text-2xl text-white mb-4'>
@@ -32,12 +32,10 @@ const Dashboard: React.FC = () => {
 
           <div className='grid gap-4 md:grid-cols-2'>
             <div>
-              <h2 className='text-xl text-white mb-4'>Your Projects:</h2>
               <ProjectList />
             </div>
 
             <div>
-              <h2 className='text-xl text-white mb-4'>Joined Projects:</h2>
               <JoinedProjectsList />
             </div>
           </div>

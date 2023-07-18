@@ -39,25 +39,28 @@ const ProjectList: React.FC = () => {
 	}, [])
 
 	return (
-		<div className='h-30vh overflow-x-auto w-full'>
-			<div className='flex flex-col'>
-				{projects.length <= 0 ? (
-					<p className='text-indigo-200'>You don't have any projects, add some! </p>
-				) : (
-					projects.map(project => (
-						<Link
-							id={project.id}
-							key={project.id}
-							to={`/projects/${project.id}`}
-							className='p-4 mb-4 bg-gray-100 rounded-md shadow-md hover:shadow-lg'
-						>
-							<h3 className='text-xl font-semibold'>{project.name}</h3>
-							<p>{project.description}</p>
-						</Link>
-					))
-				)}
-			</div>
-		</div>
+		<div className=' overflow-x-auto w-full h-[850px] sm:h-[700px]'>
+			              <h2 className='text-xl text-white mb-4'>Your Projects ({projects.length}):</h2>
+
+      {projects.length <= 0 ? (
+        <p className='text-indigo-200'>You don't have any projects, add some!</p>
+      ) : (
+        <ul className='flex flex-col sm:h-auto sm:overflow-y-visible'>
+          {projects.map(project => (
+            <li
+              id={project.id}
+              key={project.id}
+              className='p-4 mb-4 bg-gray-200 hover:bg-lime-300  transition-colors    hover:shadow-lg'
+            >
+              <Link to={`/projects/${project.id}`}>
+                <h3 className='text-xl font-semibold'>{project.name}</h3>
+                <p>{project.description}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
 	)
 }
 

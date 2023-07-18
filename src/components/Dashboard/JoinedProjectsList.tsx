@@ -20,24 +20,20 @@ const JoinedProjectsList: React.FC = () => {
 			try {
 				auth.onAuthStateChanged(async user => {
 					if (user) {
-            console.log(user.email)
-						const projectsQuery = query(
-							collection(database, 'projects'),
-						)
+						const projectsQuery = query(collection(database, 'projects'))
 						const querySnapshot: QuerySnapshot = await getDocs(projectsQuery)
-						const projectsData: Project[] = []
 						// querySnapshot.forEach(doc => {
 						// 	const project = doc.data() as Project
 
 						// 	projectsData.push(project)
 						// })
-            const documents = querySnapshot.docs.map((doc) => doc.data());
-            const filteredProjects = documents.filter((project) =>
-            project.participants.some((participant) => participant.email === user.email)
-          );
-          const filterWithoutAuthor = filteredProjects.filter(project => project.authorId !== user.uid)
-          console.log(documents)
-
+						const documents = querySnapshot.docs.map(doc => doc.data())
+						const filteredProjects = documents.filter(project =>
+							project.participants.some(participant => participant.email === user.email)
+						)
+						const filterWithoutAuthor = filteredProjects.filter(
+							project => project.authorId !== user.uid
+						)
 
 						setProjects(filterWithoutAuthor)
 					} else {
@@ -54,25 +50,26 @@ const JoinedProjectsList: React.FC = () => {
 
 	return (
 		<div className='h-30vh overflow-x-auto w-full'>
-			<div className='flex flex-col'>
-				{projects.length <= 0 ? (
-					<p className='text-indigo-200'>
-						You haven't joined any projects, create a new one or join!{' '}
-					</p>
-				) : (
-					projects.map(project => (
-						<Link
+			<h2 className='text-xl text-white mb-4'>Joined Projects ({projects.length}):</h2>
+
+			{projects.length <= 0 ? (
+				<p className='text-indigo-200'>You don't have any projects, add some!</p>
+			) : (
+				<ul className='flex flex-col'>
+					{projects.map(project => (
+						<li
 							id={project.id}
 							key={project.id}
-							to={`/projects/${project.id}`}
-							className='p-4 mb-4 bg-gray-100 rounded-md shadow-md hover:shadow-lg'
+							className='p-4 mb-4 bg-gray-200 hover:bg-lime-300  transition-colors hover:shadow-lg'
 						>
-							<h3 className='text-xl font-semibold'>{project.name}</h3>
-							<p>{project.description}</p>
-						</Link>
-					))
-				)}
-			</div>
+							<Link to={`/projects/${project.id}`}>
+								<h3 className='text-xl font-semibold'>{project.name}</h3>
+								<p>{project.description}</p>
+							</Link>
+						</li>
+					))}
+				</ul>
+			)}
 		</div>
 	)
 }
