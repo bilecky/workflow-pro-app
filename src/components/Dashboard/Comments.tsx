@@ -32,12 +32,12 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 		setComments(commentData)
 	}
 
-	useEffect(() => {
-		fetchComments()
-	}, [projectId, comments])
-
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		if (commentInput.length < 20) {
+			alert('Comment must be at least 20 characters long.') // Display an error message if the comment is too short
+			return
+		 }
 
 		const comment: Comment = {
 			id: Date.now().toString(),
@@ -49,12 +49,17 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 		const commentsRef = collection(database, 'comments')
 		addDoc(commentsRef, comment)
 		setCommentInput('')
+		fetchComments()
 	}
+
+	useEffect(() => {
+		fetchComments()
+	}, [])
 
 	return (
 		<div className='bg-zinc-700 p-4 mt-10  '>
-         <h3 className='font-bold text-xl pb-5'>Conversations:</h3>
-			<ul>
+			<h3 className='font-bold text-xl pb-5'>Conversations:</h3>
+			<ul className=''>
 				{comments.map((comment: Comment) => (
 					<li key={comment.id} className='mb-4 p-3 bg-zinc-600 shadow-lg'>
 						<p>{comment.text}</p>
@@ -66,8 +71,9 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 			</ul>
 
 			<form onSubmit={handleSubmit} className='mt-4 text-center'>
-            <h4></h4>
-				<textarea
+				<h4></h4>
+				<textarea minLength={20}
+				
 					placeholder='Enter your comment'
 					value={commentInput}
 					onChange={e => setCommentInput(e.target.value)}
@@ -77,7 +83,8 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 					type='submit'
 					className='w-full lg:w-1/5 px-10 py-3 mt-4 bg-indigo-600 text-white  shadow-md hover:bg-indigo-700 text-xl'
 				>
-Add Comment				</button>
+					Add Comment{' '}
+				</button>
 			</form>
 		</div>
 	)

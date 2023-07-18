@@ -1,33 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { Project } from '../../redux/projectSlice'
-import AddProject from './AddProject'
-import ProjectList from './ProjectsList'
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import AddProject from './AddProject';
+import ProjectList from './ProjectsList';
+import JoinedProjectsList from './JoinedProjectsList';
+import Wrapper from '../../helpers/Wrapper';
+
+const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.auth.value);
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/');
+    }
+  }, [navigate, user]);
+
+  const handleAddProject = () => {
+    navigate('/addproject');
+  };
+
+  return (
+    <Wrapper>
+      <div className='min-h-screen py-10 lg:w-4/5 m-auto relative'>
+        <div className='absolute left-0 top-0 w-full h-full bg-zinc-800 -z-10 opacity-60'></div>
+        <div className='max-w-screen-lg px-4 text-center'>
+          <h5 className='text-2xl text-white mb-4'>
+            Hello, <span className='text-indigo-500 font-bold'>{user}</span>!
+          </h5>
+
+          <div className='grid gap-4 md:grid-cols-2'>
+            <div>
+              <h2 className='text-xl text-white mb-4'>Your Projects:</h2>
+              <ProjectList />
+            </div>
+
+            <div>
+              <h2 className='text-xl text-white mb-4'>Joined Projects:</h2>
+              <JoinedProjectsList />
+            </div>
+          </div>
 
 
-const Dashboard = () => {
-   const navigate = useNavigate();
-   const user = useSelector((state: RootState) => state.auth.value);
+          <button
+            className='bg-indigo-500 transition-colors hover:bg-indigo-600 text-white py-2 px-4 mt-4 rounded'
+            onClick={handleAddProject}
+          >
+            Add Project
+          </button>
+        </div>
+      </div>
+    </Wrapper>
+  );
+};
 
-
-   useEffect(() => {
-      if (!user) {
-        navigate('/');
-      }
-    }, [navigate, user]);
-	
-   
-    return (
-
-		<div>
-
-<ProjectList/>
-
-			<AddProject />
-		</div>
-	)
-}
-
-export default Dashboard
+export default Dashboard;

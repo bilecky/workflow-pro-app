@@ -16,7 +16,6 @@ const Navbar: React.FC = () => {
 	const [logoutMenu, setLogoutMenu] = useState(false);
 
 	const user = useSelector((state: RootState) => state.auth.value);
-	console.log('user from state', user);
 	const dispatch = useDispatch();
 
 	useEffect(() => {

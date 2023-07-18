@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { collection, getDocs, query, updateDoc, where } from 'firebase/firestore'
 import { auth, database } from '../../firebase/firebaseConfig'
@@ -21,8 +21,7 @@ const ProjectDetails: React.FC = () => {
 		if (!currentUser) {
 			navigate('/')
 		}
-	}, [navigate, currentUser])
-
+	}, [currentUser, navigate])
 	const { id = '' } = useParams<ProjectParams>()
 
 	const [project, setProject] = useState<Project | null>(null)
@@ -40,27 +39,27 @@ const ProjectDetails: React.FC = () => {
 		return querySnapshot
 	}
 
-	useEffect(() => {
-		const fetchProject = async () => {
-			try {
-				if (id) {
-					const querySnapshot = await getProjectData(id)
-
-					if (!querySnapshot.empty) {
-						const projectData = querySnapshot.docs[0].data() as Project
-						setProject(projectData)
-						setTimeElapsed(getUserTimeElapsed(projectData, currentUser?.email ?? ''))
-					} else {
-						console.error('Project with the provided ID does not exist')
-					}
-				}
-			} catch (error) {
-				console.error('Error fetching project:', error)
-			}
+	const fetchProject = useCallback(async () => {
+		try {
+		  if (id) {
+			 const querySnapshot = await getProjectData(id);
+	 
+			 if (!querySnapshot.empty) {
+				const projectData = querySnapshot.docs[0].data() as Project;
+				setProject(projectData);
+				setTimeElapsed(getUserTimeElapsed(projectData, currentUser?.email ?? ''));
+			 } else {
+				console.error('Project with the provided ID does not exist');
+			 }
+		  }
+		} catch (error) {
+		  console.error('Error fetching project:', error);
 		}
-
-		fetchProject()
-	}, [id, currentUser, joining, leaving])
+	 }, []);
+	 
+	 useEffect(() => {
+		fetchProject();
+	 }, [fetchProject]);
 
 	const getUserTimeElapsed = (project: Project, email: string | undefined): number => {
 		if (!email || !project || !project.participants) {
@@ -226,10 +225,9 @@ const ProjectDetails: React.FC = () => {
 		project.participants.find(participant => participant.email === userEmail)
 
 	const isAuthor = currentUser && project.authorId === currentUser.uid
-	console.log(typeof isParticipant)
 	return (
 		<Wrapper>
-			<section className='bg-zinc-800 text-white p-4 mt-5 lg:w-4/5 mx-auto'>
+			<section className='bg-zinc-800 text-white p-4 mt-5 lg:w-4/5 mx-auto relative'>
 				<div className='lg:flex '>
 					<div className='lg:w-1/2 lg:pr-4'>
 						<div className='relative'>
@@ -271,8 +269,11 @@ const ProjectDetails: React.FC = () => {
 										Stop
 									</button>
 								)}
-								{isParticipant&& !isAuthor && (
-									<button onClick={handleLeaveProject} className='transition-colors block w-full lg:w-2/5 text-xl px-10 py-2 bg-red-500 text-white shadow-md hover:bg-red-700 '>
+								{isParticipant && !isAuthor && (
+									<button
+										onClick={handleLeaveProject}
+										className='transition-colors block w-full lg:w-2/5 text-xl px-10 py-2 bg-red-500 text-white shadow-md hover:bg-red-700 '
+									>
 										Leave project
 									</button>
 								)}
@@ -294,7 +295,7 @@ const ProjectDetails: React.FC = () => {
 						<h3 className='font-bold text-xl'>Participants:</h3>
 						<ul>
 							{project.participants.map(participant => (
-								<li key = {participant.email} className='flex items-center'>
+								<li key={participant.email} className='flex items-center'>
 									<AiOutlineUser className='mr-2 text-xl text-lime-500' />
 									{participant.email}
 								</li>
