@@ -145,6 +145,8 @@ const ProjectDetails: React.FC = () => {
             participants: updatedParticipants,
           });
           console.log('Użytkownik opuścił projekt');
+          fetchProject();
+
         } else {
           console.error('This project does not exist');
         }
@@ -194,6 +196,8 @@ const ProjectDetails: React.FC = () => {
       });
 
       console.log('Użytkownik dołączył do projektu');
+      fetchProject();
+
     } catch (error) {
       console.error('Błąd podczas dołączania do projektu:', error);
     } finally {

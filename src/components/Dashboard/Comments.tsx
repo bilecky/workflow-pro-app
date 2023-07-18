@@ -57,7 +57,7 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 	}, [])
 
 	return (
-		<div className='bg-zinc-700 p-4 mt-2  '>
+		<div className='bg-zinc-700 p-4 mt-5   '>
 			<h3 className='font-bold text-xl pb-5'>Conversations:</h3>
 			<ul className=''>
 				{comments.map((comment: Comment) => (
@@ -81,7 +81,7 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 				/>
 				<button
 					type='submit'
-					className='w-full lg:w-1/5 px-10 py-3 mt-4 bg-indigo-600 text-white  shadow-md hover:bg-indigo-700 text-xl'
+					className='w-full lg:w-1/5 px-10 py-3 mt-4  bg-indigo-600 text-white  shadow-md hover:bg-indigo-700 text-xl'
 				>
 					Add Comment{' '}
 				</button>
