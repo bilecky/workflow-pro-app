@@ -18,8 +18,8 @@ const NewProjects: React.FC = () => {
 	const sliderRef = useRef<HTMLDivElement>(null)
 
 	const sortedProjects = projects.slice(0, 8).sort((a, b) => {
-		const dateA = new Date(a.date)
-		const dateB = new Date(b.date)
+		const dateA = new Date(a.date) as any
+		const dateB = new Date(b.date) as any
 
 		return dateB - dateA
 	})
@@ -91,7 +91,7 @@ const NewProjects: React.FC = () => {
 			)}
 
 			{projects.length > 4 && (
-				<Link to='/projects' className='mt-4 inline-block'>
+				<Link to='/newProjectsList' className='mt-4 inline-block'>
 					<button className='bg-lime-400 transition-all hover:text-zinc-100 hover:bg-lime-600 text-zinc-600 font-bold py-2 px-4  mt-10 tracking-wider text-lg'>
 						Show more{' '}
 					</button>

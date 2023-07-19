@@ -10,6 +10,7 @@ import ProjectDetails from './components/Dashboard/ProjectDetails'
 import PopularProjects from './components/projects/PopularProjects'
 import Footer from './components/home/Footer'
 import AddProject from './components/Dashboard/AddProject'
+import NewProjectsList from './components/projects/NewProjectsList'
 
 // import { useEffect } from 'react';
 // import { collection, addDoc } from 'firebase/firestore';
@@ -33,6 +34,7 @@ const App = () => {
 				<Route path='/dashboard' element={<Dashboard />} />
 				<Route path='/projects/:id' element={<ProjectDetails />} />
 				<Route path='/addproject' element={<AddProject />} />
+				<Route path='newprojectslist' element = {<NewProjectsList/>}/>
 
 			</Routes>
 			<Footer/>
