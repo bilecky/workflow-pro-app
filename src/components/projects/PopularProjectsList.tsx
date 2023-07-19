@@ -70,7 +70,7 @@ const PopularProjectsList: React.FC = () => {
 			) : (
 				<div className='min-h-[800px] grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:w-4/5 m-auto '>
 					{sortedProjects.map(project => (
-						<div onClick={handleCardClick} className='bg-zinc-300  shadow-custom  mb-4 hover:scale-95 cursor-pointer transition-all text-center h-[400px] relative'>
+						<div key={project.id} onClick={handleCardClick} className='bg-zinc-300  shadow-custom  mb-4 hover:scale-95 cursor-pointer transition-all text-center h-[400px] relative'>
 							{showTooltip && !currentUser && (
 								<div className='bg-red-500 text-white text-sm absolute p-3   z-50'>
 									Details available for logged users!{' '}

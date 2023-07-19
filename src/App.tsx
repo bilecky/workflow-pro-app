@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import About from './components/About'
 import Home from './components/home/Home'
@@ -21,7 +21,7 @@ const App = () => {
 
 	
 	return (
-		<BrowserRouter>
+		<HashRouter>
 			<Navbar />
 			<BackgroundShape />
 			<Routes>
@@ -40,7 +40,7 @@ const App = () => {
 
 			</Routes>
 			<Footer/>
-		</BrowserRouter>
+		</HashRouter>
 	)
 }
 
