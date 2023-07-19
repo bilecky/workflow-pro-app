@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { AiOutlineUser, AiOutlineProject, AiOutlineLike } from 'react-icons/ai'
+import {
+	AiOutlineUsergroupAdd,
+	AiOutlineProject,
+	AiOutlineComment,
+	AiOutlineFundProjectionScreen,
+} from 'react-icons/ai'
 
 const Statistics: React.FC = () => {
 	const [userCount, setUserCount] = useState<number>(0)
@@ -8,7 +13,8 @@ const Statistics: React.FC = () => {
 	const [elementCount, setElementCount] = useState<number>(0)
 	const sectionRef = useRef<HTMLDivElement>(null)
 	const [hasAnimated, setHasAnimated] = useState<boolean>(false)
-	console.log(hasAnimated)
+
+
 	const animateCount = (
 		targetCount: number,
 		setCount: React.Dispatch<React.SetStateAction<number>>
@@ -25,16 +31,20 @@ const Statistics: React.FC = () => {
 			}
 		}, 50)
 	}
+	const randomusers = 24
+	const randomProjects = 47
+	const randomComments = 61
+	const randomFinishedProjects = 77
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			entries => {
 				entries.forEach(entry => {
 					if (entry.isIntersecting && entry.intersectionRatio >= 0.1 && !hasAnimated) {
-						animateCount(7, setUserCount)
-						animateCount(7, setProjectCount)
-						animateCount(12, setLikeCount)
-						animateCount(15, setElementCount)
+						animateCount(randomusers, setUserCount)
+						animateCount(randomProjects, setProjectCount)
+						animateCount(randomComments, setLikeCount)
+						animateCount(randomFinishedProjects, setElementCount)
 						setHasAnimated(true)
 						if (sectionRef.current) {
 							observer.unobserve(sectionRef.current)
@@ -62,7 +72,7 @@ const Statistics: React.FC = () => {
 			<div className='text-center mt-20 font-Montserrat'>
 				<h2 className='text-4xl font-bold text-indigo-50 tracking-wide  lg:text-5xl'>
 					<span className='relative '>
-						Weekly stats
+						Statistics{' '}
 						<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-lime-400 opacity-60 '></span>
 					</span>
 				</h2>
@@ -70,10 +80,10 @@ const Statistics: React.FC = () => {
 					<div className='flex-1'>
 						<div className='border-b-4 border-lime-400   p-4 min-h-full'>
 							<div className='flex items-center justify-center '>
-								<AiOutlineUser className='text-4xl text-lime-400' />
+								<AiOutlineUsergroupAdd className='text-4xl text-lime-400' />
 							</div>
 							<p className='text-4xl font-bold  text-indigo-50 my-2'>{userCount}</p>
-							<p className='text-indigo-50'>New Users</p>
+							<p className='text-indigo-50'>Users</p>
 						</div>
 					</div>
 					<div className='flex-1 sm:w-1/2 lg:w-1/4'>
@@ -82,25 +92,25 @@ const Statistics: React.FC = () => {
 								<AiOutlineProject className='text-4xl text-lime-400 ' />
 							</div>
 							<p className='text-4xl font-bold text-indigo-50 my-2'>{projectCount}</p>
-							<p className='text-indigo-50'>New Projects</p>
+							<p className='text-indigo-50'>Projects</p>
 						</div>
 					</div>
 					<div className='flex-1 sm:w-1/2 lg:w-1/4'>
 						<div className='border-b-4 border-lime-400   p-4 min-h-full'>
 							<div className='flex items-center justify-center '>
-								<AiOutlineLike className='text-4xl text-lime-400' />
+								<AiOutlineComment className='text-4xl text-lime-400' />
 							</div>
 							<p className='text-4xl font-bold text-indigo-50 my-2'>{likeCount}</p>
-							<p className='text-indigo-50'>New Likes</p>
+							<p className='text-indigo-50'>Comments</p>
 						</div>
 					</div>
 					<div className='flex-1 sm:w-1/2 lg:w-1/4 hidden sm:block'>
 						<div className='border-b-4 border-lime-400   p-4 min-h-full'>
 							<div className='flex items-center justify-center '>
-								<AiOutlineLike className='text-4xl text-lime-400' />
+								<AiOutlineFundProjectionScreen className='text-4xl text-lime-400' />
 							</div>
 							<p className='text-4xl font-bold text-indigo-50 my-2'>{elementCount}</p>
-							<p className='text-indigo-50'>New Element</p>
+							<p className='text-indigo-50'>Finished projects</p>
 						</div>
 					</div>
 				</div>
