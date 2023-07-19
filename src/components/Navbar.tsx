@@ -72,6 +72,12 @@ const Navbar: React.FC = () => {
 							<nav>
 								<ul className='space-x-4 flex'>
 									<li>
+										<Link to='/' className='text-white relative group'>
+											Home
+											<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
+										</Link>
+									</li>
+									<li>
 										<Link to='/about' className='text-white relative group'>
 											About
 											<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
@@ -165,7 +171,16 @@ const Navbar: React.FC = () => {
 										<AiOutlineClose size={28} />
 									</button>
 									<ul className='space-y-4 flex flex-col h-full justify-start m-4'>
-									<li>
+										<li>
+											<Link
+												to='/'
+												className='inline-block text-gray-800 hover:text-gray-600 py-2'
+												onClick={toggleMenu}
+											>
+												Home
+											</Link>
+										</li>
+										<li>
 											<Link
 												to='/about'
 												className='inline-block text-gray-800 hover:text-gray-600 py-2'
@@ -174,15 +189,17 @@ const Navbar: React.FC = () => {
 												About
 											</Link>
 										</li>
-								{	user &&	<li>
-											<Link
-												to='/dashboard'
-												className='inline-block text-gray-800 hover:text-gray-600 py-2'
-												onClick={toggleMenu}
-											>
-												Dashboard
-											</Link>
-										</li>}
+										{user && (
+											<li>
+												<Link
+													to='/dashboard'
+													className='inline-block text-gray-800 hover:text-gray-600 py-2'
+													onClick={toggleMenu}
+												>
+													Dashboard
+												</Link>
+											</li>
+										)}
 										<li>
 											<Link
 												to='/popularprojectslist'
