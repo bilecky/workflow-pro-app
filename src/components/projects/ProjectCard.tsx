@@ -22,6 +22,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 			}, 2000)
 		}
 	}
+	const truncatedName = name.length > 10 ? name.substring(0, 19) + "..." : name;
 
 	return (
 		<div
@@ -45,10 +46,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 					</div>
 
 					<div className='mt-4 p-4'>
-						<h2 className='text-xl text-zinc-50 font-semibold'>{name}</h2>
+						<h2 className='text-xl text-zinc-50 font-semibold'>{truncatedName}</h2>
 						<p className='text-zinc-200 opacity-70'>{date}</p>
 						<p className='text-zinc-200 whitespace-normal line-clamp-2 '>{description}</p>
-						<p className='text-zinc-200 mt-2'>Participants: {participants.length}</p>
+						<p className='text-zinc-200  mt-1'>Participants: {participants.length}</p>
 					</div>
 				</Link>
 			) : (
@@ -66,7 +67,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 						<h2 className='text-xl text-zinc-50 font-semibold'>{name}</h2>
 						<p className='text-zinc-200 opacity-70'>{date}</p>
 						<p className='text-zinc-200 whitespace-normal line-clamp-2 '>{description}</p>
-						<p className='text-zinc-200 mt-2'>
+						<p className='text-zinc-200 mt-1'>
 							Participants: <span className='font-bold'>{participants.length}</span>{' '}
 						</p>
 					</div>

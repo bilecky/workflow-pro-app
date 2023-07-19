@@ -45,36 +45,47 @@ const AddProject: React.FC<AddProjectProps> = () => {
 
 				const currentDate = date.toISOString().split('T')[0]
 
-				const newParticipant: Participant = { email: user.email, timeSpend: 0 } // Zmiana struktury obiektu Participant
+				const projectName = project.name.trim()
+				const descriptionName = project.description.trim()
+
+				if (projectName.length < 5 || projectName.length > 25) {
+					alert('The project name must be between 5 and 25 characters long.')
+					return
+				}
+				if (descriptionName.length < 20 || descriptionName.length > 150) {
+					alert('The project description must be between 20 and 150 characters long.')
+					return
+				}
+
+				const newParticipant: Participant = { email: user.email, timeSpend: 0 } //changing particiapnt structure
 				const newProject: Project = {
 					id: uuidv4(),
 					name: project.name,
 					description: project.description,
 					image: project.image,
 					authorId: user.uid,
-					participants: [newParticipant], // Utworzenie tablicy z nowym uczestnikiem
+					participants: [newParticipant], // new participant array
 					date: currentDate,
 				}
 
 				await addDoc(projectsCollectionRef, newProject)
-				console.log('Projekt został pomyślnie dodany do Firestore')
 				navigate('/dashboard')
 			}
 		} catch (error) {
-			console.log('Błąd podczas dodawania projektu:', error)
+			return
 		}
 	}
 	const handleGoBack = () => {
-		navigate('/dashboard') // Przekierowanie do "/dashboard" po kliknięciu przycisku
+		navigate('/dashboard') //
 	}
 	const style = {
-		height: 'calc(100vh - 210px)'
-	 };
+		height: 'calc(100vh - 210px)',
+	}
 
 	return (
 		<Wrapper>
 			<form
-			style={style}
+				style={style}
 				onSubmit={handleSubmit}
 				className='flex items-center justify-center   '
 			>
