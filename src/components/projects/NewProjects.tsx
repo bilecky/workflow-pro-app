@@ -26,7 +26,7 @@ const NewProjects: React.FC = () => {
 
 	useEffect(() => {
 		dispatch(fetchProjects())
-	}, [dispatch])
+	}, [])
 
 	if (error) {
 		return (

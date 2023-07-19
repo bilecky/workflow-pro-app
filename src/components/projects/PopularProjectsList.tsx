@@ -8,33 +8,25 @@ import { FiUsers } from 'react-icons/fi'
 import { RootState } from '../../redux/store'
 import Wrapper from '../../helpers/Wrapper'
 
-interface NewProjectsProps {
-	projects: Project[]
-}
-
-const NewProjectsList: React.FC = () => {
+const PopularProjectsList: React.FC = () => {
 	const dispatch: AppDispatch = useDispatch()
 	const projects = useSelector((state: RootState) => state.projects.data)
 
-
-	const sortedProjects = projects.slice(0, -1).sort((a, b) => {
-		const dateA = new Date(a.date) as any
-		const dateB = new Date(b.date) as any
-
-		return dateB - dateA
-	})
+	const sortedProjects = projects
+		.slice(0, -1)
+		.sort(
+			(a, b) => Object.keys(b.participants).length - Object.keys(a.participants).length
+		)
 
 	useEffect(() => {
 		dispatch(fetchProjects())
 	}, [])
 
-	console.log(projects)
-
 	return (
 		<Wrapper>
 			<h2 className='text-center my-20 text-4xl font-bold text-indigo-50 tracking-wide'>
 				<span className='relative '>
-					New Projects{' '}
+					Popular Projects{' '}
 					<span className='absolute -z-10 left-0 right-0 w-4/5 h-2 bottom-1 bg-lime-400 opacity-60'></span>
 				</span>
 			</h2>
@@ -63,4 +55,4 @@ const NewProjectsList: React.FC = () => {
 	)
 }
 
-export default NewProjectsList
+export default PopularProjectsList

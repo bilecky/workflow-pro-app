@@ -8,7 +8,6 @@ import ProjectCard from './ProjectCard'
 import { Link } from 'react-router-dom'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
-
 const PopularProjects: React.FC = () => {
 	const dispatch: AppDispatch = useDispatch()
 	const projects = useSelector((state: RootState) => state.projects.data)
@@ -20,19 +19,21 @@ const PopularProjects: React.FC = () => {
 
 	const sortedProjects = projects
 		.slice(0, 5)
-		.sort((a, b) => Object.keys(b.participants).length - Object.keys(a.participants).length);
+		.sort(
+			(a, b) => Object.keys(b.participants).length - Object.keys(a.participants).length
+		)
 
 	useEffect(() => {
 		dispatch(fetchProjects())
 	}, [dispatch])
 
 	if (error) {
-      return (
-        <div className="mt-20 flex items-center justify-center">
-          <p className="text-red-500 text-lg font-bold">{`Error: ${error}`}</p>
-        </div>
-      );
-    }
+		return (
+			<div className='mt-20 flex items-center justify-center'>
+				<p className='text-red-500 text-lg font-bold'>{`Error: ${error}`}</p>
+			</div>
+		)
+	}
 
 	const handleScrollLeft = () => {
 		if (sliderRef.current) {
@@ -66,8 +67,8 @@ const PopularProjects: React.FC = () => {
 			) : (
 				<div className='mt-16 relative flex items-center '>
 					<FaChevronLeft
-							className='text-indigo-50 cursor-pointer p-1 '
-                     size={26}
+						className='text-indigo-50 cursor-pointer p-1 '
+						size={26}
 						onClick={handleScrollLeft}
 					/>
 					<div
@@ -89,7 +90,7 @@ const PopularProjects: React.FC = () => {
 			)}
 
 			{projects.length > 4 && (
-				<Link to='/projects' className='mt-4 inline-block'>
+				<Link to='/popularprojectslist' className='mt-4 inline-block'>
 					<button className='bg-lime-400 transition-all hover:text-zinc-100 hover:bg-lime-600 text-zinc-600 font-bold py-2 px-4  mt-10 -tracking-wider text-xl'>
 						Show more{' '}
 					</button>
