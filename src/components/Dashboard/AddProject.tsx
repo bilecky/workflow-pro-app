@@ -52,8 +52,8 @@ const AddProject: React.FC<AddProjectProps> = () => {
 					alert('The project name must be between 5 and 25 characters long.')
 					return
 				}
-				if (descriptionName.length < 20 || descriptionName.length > 150) {
-					alert('The project description must be between 20 and 150 characters long.')
+				if (descriptionName.length < 20 || descriptionName.length > 700) {
+					alert('The project description must be between 20 and 700 characters long.')
 					return
 				}
 

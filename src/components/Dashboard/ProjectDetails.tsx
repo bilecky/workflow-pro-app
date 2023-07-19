@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { collection, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { auth, database } from '../../firebase/firebaseConfig';
 import { Project } from '../../redux/projectSlice';
@@ -16,6 +16,7 @@ type ProjectParams = {
 const ProjectDetails: React.FC = () => {
   const currentUser = auth.currentUser;
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (!currentUser) {
@@ -275,14 +276,14 @@ const ProjectDetails: React.FC = () => {
                 {!isRunning ? (
                   <button
                     onClick={handleStart}
-                    className="transition-colors w-full lg:w-2/5 mb-6 text-xl px-10 py-2 border border-indigo-600 text-white shadow-md hover:bg-indigo-700"
+                    className="transition-colors w-full lg:w-3/5 xl:w-2/5 mb-6 text-xl px-10 py-2 border border-indigo-600 text-white shadow-md hover:bg-indigo-700"
                   >
                     Start
                   </button>
                 ) : (
                   <button
                     onClick={handleStop}
-                    className="transition-colors w-full lg:w-2/5  mb-6 text-xl px-10 py-2 bg-red-500 text-white shadow-md hover:bg-red-700"
+                    className="transition-colors w-full lg:w-3/5 xl:w-2/5  mb-6 text-xl px-10 py-2 bg-red-500 text-white shadow-md hover:bg-red-700"
                   >
                     Stop
                   </button>
@@ -290,7 +291,7 @@ const ProjectDetails: React.FC = () => {
                 {isParticipant && !isAuthor && (
                   <button
                     onClick={handleLeaveProject}
-                    className="transition-colors block w-full lg:w-2/5 text-xl px-10 py-2 border border-red-500 text-white shadow-md hover:bg-red-700"
+                    className="transition-colors block w-full lg:w-3/5 xl:w-2/5 text-xl px-10 py-2 border border-red-500 text-white shadow-md hover:bg-red-700"
                   >
                     Leave project
                   </button>

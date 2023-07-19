@@ -56,7 +56,7 @@ const JoinedProjectsList: React.FC = () => {
 					<div className=' overflow-x-auto w-full lg:h-[850px] h-[350px]'>
 
 {projects.length <= 0 ? (
-	<p className='text-indigo-200'>You don't have any projects, add some!</p>
+	<p className='text-indigo-200'>You have not joined any project!</p>
 ) : (
 	<ul className='flex flex-col sm:h-auto sm:overflow-y-visible'>
 		{projects.map(project => (
@@ -67,7 +67,7 @@ const JoinedProjectsList: React.FC = () => {
 			>
 				<Link to={`/projects/${project.id}`}>
 					<h3 className='text-xl font-semibold'>{project.name}</h3>
-					<p>{project.description}</p>
+					<p className='line-clamp-1'>{project.description}</p>
 				</Link>
 			</li>
 		))}

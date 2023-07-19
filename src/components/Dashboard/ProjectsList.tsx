@@ -57,7 +57,7 @@ const ProjectList: React.FC = () => {
 			>
 				<Link to={`/projects/${project.id}`}>
 					<h3 className='text-xl font-semibold'>{project.name}</h3>
-					<p>{project.description}</p>
+					<p className='line-clamp-1'>{project.description}</p>
 				</Link>
 			</li>
 		))}

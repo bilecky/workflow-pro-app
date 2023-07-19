@@ -15,27 +15,31 @@ const Navbar: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [logoutMenu, setLogoutMenu] = useState(false);
 
-	const user = useSelector((state: RootState) => state.auth.value);
+	const user = useSelector((state: RootState) => state.auth.value) ;
 	const dispatch = useDispatch();
+
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				dispatch(saveUser(user.email));
-			} else {
-				dispatch(saveUser(undefined));
-				navigate('/')
-			}
+		  if (user) {
+			const email = user.email ? user.email.split('@')[0] : ''; 
+			dispatch(saveUser(email));		  } else {
+			 dispatch(saveUser(undefined));
+			 navigate('/');
+		  }
 		});
-	}, [dispatch]);
+	 }, [dispatch]);
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
 
+	console.log(typeof user)
 	const handleLogoutMenu = () => {
 		setLogoutMenu(!logoutMenu);
 	};
+
+	
 
 	const handleMenuClick = (event: globalThis.MouseEvent) => {
 		if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -43,7 +47,7 @@ const Navbar: React.FC = () => {
 		}
 	};
 
-	const handleLogoutBtn = () => signOut(auth)
+	const handleLogoutBtn = () => {signOut(auth)}
 	
 	useEffect(() => {
 		document.addEventListener('click', handleMenuClick);
@@ -108,8 +112,8 @@ const Navbar: React.FC = () => {
 											</>
 										)}
 										{logoutMenu && (
-											<div className='absolute z-50 bg-slate-50 hover:text-lime-400 hover:bg-zinc-600 transition text-black -left-4 -bottom-14 w-full'>
-												<div onClick={handleLogoutBtn} className='px-6 py-3'>Logout</div>
+											<div className='absolute z-50 bg-slate-50 hover:text-lime-400 hover:bg-zinc-600 transition text-black -left-4 -bottom-14 '>
+												<button onClick={handleLogoutBtn} className='px-6 py-3'>Logout</button>
 											</div>
 										)}
 									</button>
@@ -156,6 +160,19 @@ const Navbar: React.FC = () => {
 										</li>
 										<li>
 											<Link
+												to='/popularprojectslist'
+												className='inline-block text-gray-800 hover:text-gray-600 py-2'
+												onClick={toggleMenu}
+											>
+												Browse projects
+											</Link>
+										</li>
+									{ user &&	<li onClick={handleLogoutBtn}>
+										
+												Logout
+										</li>}
+								{	!user &&	<><li>
+											<Link
 												to='/login'
 												className='inline-block text-gray-800 hover:text-gray-600 py-2'
 												onClick={toggleMenu}
@@ -171,7 +188,7 @@ const Navbar: React.FC = () => {
 											>
 												Sign up
 											</Link>
-										</li>
+										</li></>}
 										<li className='flex-grow'></li>
 
 										<li className='text-center'>

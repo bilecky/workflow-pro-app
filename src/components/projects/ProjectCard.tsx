@@ -22,7 +22,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 			}, 2000)
 		}
 	}
-	const truncatedName = name.length > 10 ? name.substring(0, 19) + "..." : name;
+	const truncatedName = name.length >= 18 ? name.substring(0, 19) + "..." : name;
 
 	return (
 		<div
