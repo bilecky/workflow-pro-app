@@ -32,7 +32,7 @@ const Presentation = () => {
 						</div>
 						<div className='text-indigo-50'>
 							<p>
-								Discover the power of <h1 className='text-lime-500'>Workflow Pro</h1> in
+								Discover the power of <h1 className='text-lime-500 inline'>Workflow Pro</h1> in
 								today's fast-paced world. Effortlessly track your work hours, collaborate
 								seamlessly with your team, and add projects with ease. Stay organized,
 								increase productivity, and create a free account to experience the

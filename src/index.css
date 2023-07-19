@@ -29,7 +29,7 @@ body {
 	visibility: hidden;
 }
 ::-webkit-scrollbar {
-	width: 10px;
+	width: 7px;
 }
 
 /* Track */
@@ -39,7 +39,7 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	background-color: rgba(100, 163, 13, 0.8);	border-radius: 15px;
+	background-color: rgba(100, 163, 13, 0.529);	border-radius: 15px;
 }
 
 /* Handle on hover */

@@ -275,7 +275,7 @@ const ProjectDetails: React.FC = () => {
                 {!isRunning ? (
                   <button
                     onClick={handleStart}
-                    className="transition-colors w-full lg:w-2/5 mb-6 text-xl px-10 py-2 bg-indigo-600 text-white shadow-md hover:bg-indigo-700"
+                    className="transition-colors w-full lg:w-2/5 mb-6 text-xl px-10 py-2 border border-indigo-600 text-white shadow-md hover:bg-indigo-700"
                   >
                     Start
                   </button>
@@ -290,7 +290,7 @@ const ProjectDetails: React.FC = () => {
                 {isParticipant && !isAuthor && (
                   <button
                     onClick={handleLeaveProject}
-                    className="transition-colors block w-full lg:w-2/5 text-xl px-10 py-2 bg-red-500 text-white shadow-md hover:bg-red-700"
+                    className="transition-colors block w-full lg:w-2/5 text-xl px-10 py-2 border border-red-500 text-white shadow-md hover:bg-red-700"
                   >
                     Leave project
                   </button>

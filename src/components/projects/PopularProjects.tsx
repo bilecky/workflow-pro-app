@@ -74,7 +74,7 @@ const PopularProjects: React.FC = () => {
 						ref={sliderRef}
 						style={{ touchAction: 'pan-x', WebkitOverflowScrolling: 'touch' }}
 						id='slider'
-						className='w-full  h-full overflow-x-scroll sm:overflow-x-hidden mx-3 scroll whitespace-nowrap scroll-smooth'
+						className='w-full  h-full overflow-x-auto scrollbar-hide sm:overflow-x-hidden mx-3 scroll whitespace-nowrap scroll-smooth'
 					>
 						{sortedProjects.map(project => (
 							<ProjectCard key={project.id} project={project} />
@@ -90,7 +90,7 @@ const PopularProjects: React.FC = () => {
 
 			{projects.length > 4 && (
 				<Link to='/projects' className='mt-4 inline-block'>
-					<button className='bg-lime-400 transition-all hover:text-zinc-100 hover:bg-lime-600 text-zinc-600 font-bold py-2 px-4  mt-10'>
+					<button className='bg-lime-400 transition-all hover:text-zinc-100 hover:bg-lime-600 text-zinc-600 font-bold py-2 px-4  mt-10 -tracking-wider text-xl'>
 						Show more{' '}
 					</button>
 				</Link>

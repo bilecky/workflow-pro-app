@@ -30,7 +30,7 @@ const Dashboard: React.FC = () => {
             Hello, <span className='text-indigo-500 font-bold'>{user}</span>!
           </h5>
           <button
-            className='bg-indigo-500 transition-colors hover:bg-indigo-600 text-white py-3 px-10 m-12 rounded'
+            className='bg-indigo-500 transition-colors hover:bg-indigo-600 text-white py-3 px-10 m-12 '
             onClick={handleAddProject}
           >
             Add Project

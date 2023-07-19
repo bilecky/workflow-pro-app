@@ -81,7 +81,7 @@ const Comments: React.FC<CommentsComponentProps> = ({ projectId }) => {
 				/>
 				<button
 					type='submit'
-					className='w-full lg:w-1/5 px-10 py-3 mt-4  bg-indigo-600 text-white  shadow-md hover:bg-indigo-700 text-xl'
+					className='w-full lg:w-1/5 px-10 py-3 mt-4  border border-indigo-500 text-white  shadow-md hover:bg-indigo-700 text-xl'
 				>
 					Add Comment{' '}
 				</button>
