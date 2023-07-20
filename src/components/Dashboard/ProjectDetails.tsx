@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { collection, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { auth, database } from '../../firebase/firebaseConfig';
 import { Project } from '../../redux/projectSlice';
