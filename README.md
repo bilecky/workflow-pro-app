@@ -1,5 +1,7 @@
-# workflow-pro-app
+# WorkFlow Pro App
 
+ <a href="https://deviceframes.com/templates/iphone-13">![WORKFLOW-GITHUB](https://github.com/bilecky/workflow-pro-app/assets/51762310/3aaf78aa-a171-4173-9840-537f7460be08)
+</a>
 
 
 
@@ -42,7 +44,7 @@ While spending time programming, I've always liked to have an overview of how mu
 - **Blocking access for non-logged-in users**
   - Users friendly notifications for non-logged-in users and blocking of functionalities available for logged-in users
 
-## Live preview
+## Quick preview
 
 https://github.com/bilecky/workflow-pro-app/assets/51762310/744fc057-49a0-4569-92ac-dadf3997a7b0
 
