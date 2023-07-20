@@ -27,45 +27,42 @@ const ProjectList: React.FC = () => {
 
 						setProjects(projectsData)
 					} else {
-						console.error('Użytkownik nie jest zalogowany')
+						return
 					}
 				})
 			} catch (error) {
-				console.error('Wystąpił błąd podczas pobierania projektów:', error)
+				return
 			}
 		}
 
 		fetchProjects()
 	}, [])
 
-
 	return (
 		<>
-					<h2 className='text-xl text-white mb-4'>Your Projects ({projects.length}):</h2>
+			<h2 className='text-xl text-white mb-4'>Your Projects ({projects.length}):</h2>
 
-					<div className=' overflow-x-auto w-full lg:h-[850px] h-[350px]'>
-
-{projects.length <= 0 ? (
-	<p className='text-indigo-200'>You don't have any projects, add some!</p>
-) : (
-	<ul className='flex flex-col sm:h-auto sm:overflow-y-visible'>
-		{projects.map(project => (
-			<li
-				id={project.id}
-				key={project.id}
-				className='p-4 mb-4 bg-gray-200 hover:bg-lime-300  transition-colors    hover:shadow-lg'
-			>
-				<Link to={`/projects/${project.id}`}>
-					<h3 className='text-xl font-semibold'>{project.name}</h3>
-					<p className='line-clamp-1'>{project.description}</p>
-				</Link>
-			</li>
-		))}
-	</ul>
-)}
-</div>
+			<div className=' overflow-x-auto w-full lg:h-[850px] h-[350px]'>
+				{projects.length <= 0 ? (
+					<p className='text-indigo-200'>You don't have any projects, add some!</p>
+				) : (
+					<ul className='flex flex-col sm:h-auto sm:overflow-y-visible'>
+						{projects.map(project => (
+							<li
+								id={project.id}
+								key={project.id}
+								className='p-4 mb-4 bg-gray-200 hover:bg-lime-300  transition-colors    hover:shadow-lg'
+							>
+								<Link to={`/projects/${project.id}`}>
+									<h3 className='text-xl font-semibold'>{project.name}</h3>
+									<p className='line-clamp-1'>{project.description}</p>
+								</Link>
+							</li>
+						))}
+					</ul>
+				)}
+			</div>
 		</>
-		
 	)
 }
 

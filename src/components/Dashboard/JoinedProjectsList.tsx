@@ -30,11 +30,11 @@ const JoinedProjectsList: React.FC = () => {
 
 						setProjects(filterWithoutAuthor)
 					} else {
-						console.error('USER IS NOT LOGGED IN')
+						return
 					}
 				})
 			} catch (error) {
-				console.error('ERROR WHILE DOWNLOADING PROJECTS:', error)
+				return
 			}
 		}
 
