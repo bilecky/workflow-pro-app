@@ -1,6 +1,6 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import About from './components/About'
+import Navbar from './components/home/Navbar'
+import About from './components/home/About'
 import Home from './components/home/Home'
 import BackgroundShape from './helpers/BackgroundShape'
 import Login from './components/auth/Login'
@@ -17,16 +17,12 @@ import PopularProjectsList from './components/projects/PopularProjectsList'
 // import { app, database } from './firebase/firebaseConfig';
 
 const App = () => {
-
-
-	
 	return (
 		<HashRouter>
 			<Navbar />
 			<BackgroundShape />
 			<Routes>
 				<Route path='/' element={<Home />} />
-							
 
 				<Route path='/about' element={<About />} />
 				<Route path='/register' element={<Register />} />
@@ -34,12 +30,10 @@ const App = () => {
 				<Route path='/dashboard' element={<Dashboard />} />
 				<Route path='/projects/:id' element={<ProjectDetails />} />
 				<Route path='/addproject' element={<AddProject />} />
-				<Route path='/newprojectslist' element = {<NewProjectsList/>}/>
-				<Route path='/popularprojectslist' element = {<PopularProjectsList/>}/>
-
-
+				<Route path='/newprojectslist' element={<NewProjectsList />} />
+				<Route path='/popularprojectslist' element={<PopularProjectsList />} />
 			</Routes>
-			<Footer/>
+			<Footer />
 		</HashRouter>
 	)
 }

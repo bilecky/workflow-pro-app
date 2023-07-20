@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect, MouseEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { AiFillAlert, AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
-import { auth, onAuthStateChanged, signOut } from '../firebase/firebaseConfig'
-import { saveUser } from '../redux/authSlice'
+import {  AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
+import { auth, onAuthStateChanged, signOut } from '../../firebase/firebaseConfig'
+import { saveUser } from '../../redux/authSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../redux/store'
+import { RootState } from '../../redux/store'
 import { useNavigate } from 'react-router-dom'
+import { Tb3DCubeSphere } from 'react-icons/tb'
 
 const Navbar: React.FC = () => {
 	const menuRef = useRef<HTMLHeadingElement>(null)
@@ -64,8 +65,8 @@ const Navbar: React.FC = () => {
 					<div className='flex justify-between items-center'>
 						<div>
 							<Link to='/' className='flex items-center text-white'>
-								<AiFillAlert className='w-6 h-6' />
-								<h1 className='text-2xl font-bolder ml-3 text-lime-400'>Workflow Pro</h1>
+								<Tb3DCubeSphere className='w-6 h-6' />
+								<h2 className='text-2xl font-bolder ml-3 text-lime-400'>Workflow Pro</h2>
 							</Link>
 						</div>
 						<div className='hidden sm:block'>
@@ -84,25 +85,14 @@ const Navbar: React.FC = () => {
 										</Link>
 									</li>
 									<li>
-												<Link
-													to='/popularprojectslist'
-													className='text-white relative group'
-												>
-													Browse Projects
-													<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
-												</Link>
-											</li>{' '}
+										<Link to='/popularprojectslist' className='text-white relative group'>
+											Browse Projects
+											<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
+										</Link>
+									</li>{' '}
 									{user && (
 										<>
-											<li>
-												<Link
-													to='/popularprojectslist'
-													className='text-white relative group'
-												>
-													Browse Projects
-													<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
-												</Link>
-											</li>{' '}
+										
 											<li>
 												<Link to='/dashboard' className='text-white relative group'>
 													Dashboard
@@ -111,7 +101,6 @@ const Navbar: React.FC = () => {
 											</li>
 										</>
 									)}
-
 									{!user && (
 										<>
 											<li>
@@ -128,7 +117,6 @@ const Navbar: React.FC = () => {
 											</li>
 										</>
 									)}
-
 									<li>
 										<button
 											onClick={handleLogoutMenu}

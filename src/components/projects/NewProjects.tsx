@@ -91,7 +91,7 @@ const NewProjects: React.FC = () => {
 
 			{projects.length > 4 && (
 				<Link to='/newProjectsList' className='mt-4 inline-block'>
-					<button className='bg-lime-400 transition-all hover:text-zinc-100 hover:bg-lime-600 text-zinc-600 font-bold py-2 px-4  mt-10 tracking-wider text-lg'>
+					<button className='bg-lime-400 transition-all hover:text-zinc-50 hover:bg-lime-600 text-zinc-800 py-2 px-4  mt-10 tracking-wider text-lg hover:scale-110'>
 						Show more{' '}
 					</button>
 				</Link>
