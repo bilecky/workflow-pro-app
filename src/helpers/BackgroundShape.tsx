@@ -1,10 +1,10 @@
-import React from 'react'
+import backgroundShape from '../assets/png-image.png'
 
 const BackgroundShape = () => {
 	return (
 		<div className='absolute top-0 left-0 h-full w-full overflow-hidden -z-20 opacity-40 lg:opacity-20'>
 			<img
-				src='/src/assets/png-image.png'
+				src= {backgroundShape}
 				alt='background shape'
 				className='w-full h-full -z-10'
 			/>

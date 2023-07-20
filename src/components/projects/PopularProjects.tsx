@@ -17,11 +17,8 @@ const PopularProjects: React.FC = () => {
 	const [scrollOffset, setScrollOffset] = useState<number>(0)
 	const sliderRef = useRef<HTMLDivElement>(null)
 
-	const sortedProjects = projects
-		.slice(0, 5)
-		.sort(
-			(a, b) => Object.keys(b.participants).length - Object.keys(a.participants).length
-		)
+	const sortedProjects = [...projects].sort((a, b) => Object.keys(b.participants).length - Object.keys(a.participants).length
+		).slice(0, 8);
 
 	useEffect(() => {
 		dispatch(fetchProjects())

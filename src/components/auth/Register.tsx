@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, MouseEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { auth } from '../../firebase/firebaseConfig'
 // import { setAuthenticated, setRegistered } from '../../redux/authSlice'

@@ -1,5 +1,4 @@
 import React from 'react'
-import Wrapper from '../helpers/Wrapper'
 import { AiFillProject, AiOutlineShareAlt, AiOutlineClockCircle, AiFillStar, AiOutlineFolderOpen, AiOutlineUser, AiOutlineBulb } from 'react-icons/ai'
 
 const About: React.FC = () => {
