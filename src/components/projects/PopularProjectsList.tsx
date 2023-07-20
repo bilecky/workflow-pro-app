@@ -56,7 +56,7 @@ const PopularProjectsList: React.FC = () => {
 									/>
 									<div className='absolute top-0 left-0 w-full h-full bg-green-500 opacity-50'></div>
 								</div>
-								<h3 className=' px-2 text-xl font-semibold mt-2 mb-2'>{project.name}</h3>
+								<h3 className=' px-2 text-xl font-semibold mt-3 mb-3'>{project.name}</h3>
 								<p className='text-gray-500 mb-2 line-clamp-4 px-2 '>
 									{project.description}
 								</p>
