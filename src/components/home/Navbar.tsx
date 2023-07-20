@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
 						<div>
 							<Link to='/' className='flex items-center text-white'>
 								<Tb3DCubeSphere className='w-6 h-6' />
-								<h2 className='text-2xl font-bolder ml-3 text-lime-400'>Workflow Pro</h2>
+								<h1 className='text-2xl font-bolder ml-3 text-lime-400'>Workflow Pro</h1>
 							</Link>
 						</div>
 						<div className='hidden sm:block'>
