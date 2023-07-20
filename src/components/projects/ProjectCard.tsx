@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Project } from '../../redux/projectSlice'
 import { Link } from 'react-router-dom'
-import { auth, database } from '../../firebase/firebaseConfig'
+import { auth } from '../../firebase/firebaseConfig'
 
 interface ProjectCardProps {
 	project: Project

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProjects } from '../../redux/projectSlice'
 import { AppDispatch } from '../../redux/store'
@@ -14,11 +14,13 @@ const PopularProjects: React.FC = () => {
 	const isLoading = useSelector((state: RootState) => state.projects.isLoading)
 	const error = useSelector((state: RootState) => state.projects.error)
 
-	const [scrollOffset, setScrollOffset] = useState<number>(0)
 	const sliderRef = useRef<HTMLDivElement>(null)
 
-	const sortedProjects = [...projects].sort((a, b) => Object.keys(b.participants).length - Object.keys(a.participants).length
-		).slice(0, 8);
+	const sortedProjects = [...projects]
+		.sort(
+			(a, b) => Object.keys(b.participants).length - Object.keys(a.participants).length
+		)
+		.slice(0, 8)
 
 	useEffect(() => {
 		dispatch(fetchProjects())
@@ -37,7 +39,6 @@ const PopularProjects: React.FC = () => {
 			const container = sliderRef.current
 
 			container.scrollLeft -= 250
-			setScrollOffset(container.scrollLeft)
 		}
 	}
 
@@ -45,7 +46,6 @@ const PopularProjects: React.FC = () => {
 		if (sliderRef.current) {
 			const container = sliderRef.current
 			container.scrollLeft += 250
-			setScrollOffset(container.scrollLeft)
 		}
 	}
 	return (

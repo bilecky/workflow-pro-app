@@ -66,14 +66,14 @@ const Presentation = () => {
 								today!
 							</p>
 							<p className='my-5'>
-								Boost your productivity in the modern age with Workflow Pro. Effortlessly
+								Boost your productivity in the modern age. Effortlessly
 								track your work time, collaborate with colleagues, and manage projects
 								efficiently. With its intuitive interface and free account option,
 								Workflow Pro is the ultimate tool to enhance your workflow and achieve
 								success.
 							</p>
 							<p>
-								Stay on top of your tasks and deadlines with Workflow Pro. Seamlessly
+								Stay on top of your tasks and deadlines. Seamlessly
 								track your work hours, collaborate with your team, and add comments for
 								effective communication. Experience the convenience of a free account and
 								unlock the full potential of your productivity. Take control of your work

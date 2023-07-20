@@ -111,22 +111,7 @@ const About: React.FC = () => {
             journey.
           </p>
         </div>
-        <div>
-          <h4 className='text-lg lg:text-2xl font-bold mt-16 text-zinc-50'>
-            Track Your Project Contributions
-          </h4>
-          <div className="flex items-center justify-center mt-2">
-            <AiOutlineBulb size={36} className='text-lime-500 mb-4 my-2 w-full' />
-          </div>
-          <p className=' text-zinc-300'>
-            With our app, you can easily track your project contributions. Monitor the
-            projects you're actively involved in, view your assigned tasks, and track your
-            progress. Whether you're a team leader or a valuable team member, our platform
-            ensures transparency and accountability. Visualize your impact, measure your
-            productivity, and showcase your achievements as you collaborate and make a
-            difference within your projects.
-          </p>
-        </div>
+       
       </div>
     </section>
   )
