@@ -83,6 +83,15 @@ const Navbar: React.FC = () => {
 											<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
 										</Link>
 									</li>
+									<li>
+												<Link
+													to='/popularprojectslist'
+													className='text-white relative group'
+												>
+													Browse Projects
+													<span className='absolute left-1/2 -bottom-1 h-0.5 bg-lime-400 transform -translate-x-1/2 w-0 transition-all duration-300 group-hover:w-full'></span>
+												</Link>
+											</li>{' '}
 									{user && (
 										<>
 											<li>
