@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/home/Navbar'
 import About from './components/home/About'
 import Home from './components/home/Home'
@@ -18,7 +18,7 @@ import PopularProjectsList from './components/projects/PopularProjectsList'
 
 const App = () => {
 	return (
-		<HashRouter>
+		<Router>
 			<Navbar />
 			<BackgroundShape />
 			<Routes>
@@ -34,7 +34,7 @@ const App = () => {
 				<Route path='/popularprojectslist' element={<PopularProjectsList />} />
 			</Routes>
 			<Footer />
-		</HashRouter>
+		</Router>
 	)
 }
 

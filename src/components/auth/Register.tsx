@@ -67,7 +67,7 @@ const Register: React.FC = () => {
 				</div>
 				<div className='mb-4'>
 					<label htmlFor='password' className=' block mb-2'>
-						Password{' '}
+						Password:
 					</label>
 					<input
 						className='w-full border border-gray-300 p-2'
