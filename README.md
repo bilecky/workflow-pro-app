@@ -39,6 +39,8 @@ While spending time programming, I've always liked to have an overview of how mu
   - Users can easily view their created projects and the projects they have joined, keeping them organized and informed.
   - Possibility of easy deletion of self-created projects.
  
+- **Blocking access for non-logged-in users**
+  - Users friendly notifications for non-logged-in users and blocking of functionalities available for logged-in users
 
 ## Live preview
 
