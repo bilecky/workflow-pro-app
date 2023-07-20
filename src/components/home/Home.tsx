@@ -13,7 +13,6 @@ const Home: React.FC = () => {
 	const [elementCount, setElementCount] = useState<number>(0)
 	const sectionRef = useRef<HTMLDivElement>(null)
 	const [hasAnimated, setHasAnimated] = useState<boolean>(false)
-	console.log(hasAnimated)
 	const animateCount = (
 		targetCount: number,
 		setCount: React.Dispatch<React.SetStateAction<number>>

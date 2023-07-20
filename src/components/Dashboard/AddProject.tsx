@@ -4,7 +4,6 @@ import { auth, database } from '../../firebase/firebaseConfig'
 import { addDoc, collection, CollectionReference } from 'firebase/firestore'
 import { v4 as uuidv4 } from 'uuid'
 import Wrapper from '../../helpers/Wrapper'
-import { FiArrowLeft } from 'react-icons/fi'
 import { useNavigate } from 'react-router'
 
 interface AddProjectProps {}

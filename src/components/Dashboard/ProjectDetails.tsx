@@ -16,7 +16,6 @@ type ProjectParams = {
 const ProjectDetails: React.FC = () => {
   const currentUser = auth.currentUser;
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     if (!currentUser) {
@@ -169,7 +168,6 @@ const ProjectDetails: React.FC = () => {
       const querySnapshot = await getProjectData(id);
 
       if (querySnapshot.empty) {
-        console.error('Projekt o podanym ID nie istnieje');
         return;
       }
 
@@ -177,7 +175,6 @@ const ProjectDetails: React.FC = () => {
       const projectData = querySnapshot.docs[0].data() as Project;
 
       if (projectData.authorId === currentUser.uid) {
-        console.log('Jesteś już twórcą tego projektu.');
         return;
       }
 
@@ -196,7 +193,6 @@ const ProjectDetails: React.FC = () => {
         participants: participants,
       });
 
-      console.log('Użytkownik dołączył do projektu');
       fetchProject();
 
     } catch (error) {

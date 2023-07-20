@@ -30,9 +30,7 @@ const Login: React.FC = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log('logowanie zakończona sukcesem');
     } catch (error) {
-      console.log('Problem z logowaniem',  error);
       
       setLoginErr(true)
       const timer = setTimeout(() => {

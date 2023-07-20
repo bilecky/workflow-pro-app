@@ -34,7 +34,6 @@ const Navbar: React.FC = () => {
 		setIsOpen(!isOpen)
 	}
 
-	console.log(typeof user)
 	const handleLogoutMenu = () => {
 		setLogoutMenu(!logoutMenu)
 	}

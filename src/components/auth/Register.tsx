@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { auth } from '../../firebase/firebaseConfig'
-// import { setAuthenticated, setRegistered } from '../../redux/authSlice'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 import { useNavigate } from 'react-router-dom'
@@ -36,11 +35,8 @@ const Register: React.FC = () => {
 		
 		try {
 			await createUserWithEmailAndPassword(auth, email, password)
-			console.log('rejestracja zakonczona sukcesem')
-			// dispatch(setRegistered(true))
-			// dispatch(setAuthenticated(true))
+
 		} catch (error) {
-			console.log('registration problem', error)
 			setRegisterErr(true)
 			const timer = setTimeout(() => {
 				setRegisterErr(false)
