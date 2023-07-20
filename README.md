@@ -5,7 +5,7 @@
 
 ## Description
 
-While spending time programming, I've always liked to have an overview of how much time I spend coding and what specific tasks I'm working on. To remedy this, I decided to create a prototype solution that allows users to measure and record their time, communicate with others and join collaborative projects. The app uses the latest frontend techniques and leverages popular backend solutions provided by Google. The WorkFlow Pro app is 100% designed and coded by me.
+While spending time programming, I've always liked to have an overview of how much time I spend coding and what specific tasks I'm working on. To remedy this, I decided to create a prototype solution that allows users to measure and record their time, communicate with others, create OWN projects and join collaborative projects. The app uses the latest frontend techniques and leverages popular backend solutions provided by Google. The WorkFlow Pro app is 100% designed and coded by me.
 
 ## Live Demo
 
