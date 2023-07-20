@@ -134,7 +134,6 @@ const ProjectDetails: React.FC = () => {
           const projectData = querySnapshot.docs[0].data() as Project;
 
           if (projectData.authorId === currentUser.uid) {
-            console.log('Jesteś twórcą projektu, nie możesz go opuścić');
             return;
           }
           const updatedParticipants: Participant[] = projectData.participants.filter(
@@ -144,7 +143,6 @@ const ProjectDetails: React.FC = () => {
           await updateDoc(projectDocRef, {
             participants: updatedParticipants,
           });
-          console.log('Użytkownik opuścił projekt');
           fetchProject();
 
         } else {
