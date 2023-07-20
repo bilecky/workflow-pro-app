@@ -15,11 +15,7 @@ const JoinedProjectsList: React.FC = () => {
 					if (user) {
 						const projectsQuery = query(collection(database, 'projects'))
 						const querySnapshot: QuerySnapshot = await getDocs(projectsQuery)
-						// querySnapshot.forEach(doc => {
-						// 	const project = doc.data() as Project
-
-						// 	projectsData.push(project)
-						// })
+					
 						const documents = querySnapshot.docs.map(doc => doc.data())
 						const filteredProjects = documents.filter(project =>
 							project.participants.some(participant => participant.email === user.email)

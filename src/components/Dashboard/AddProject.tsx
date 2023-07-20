@@ -6,10 +6,11 @@ import { v4 as uuidv4 } from 'uuid'
 import Wrapper from '../../helpers/Wrapper'
 import { useNavigate } from 'react-router'
 
-interface AddProjectProps {}
 
-const AddProject: React.FC<AddProjectProps> = () => {
-	const navigate = useNavigate()
+const AddProject: React.FC = () => {
+	const currentUser = auth.currentUser;
+	const navigate = useNavigate();
+ 
 	const [project, setProject] = useState<Project>({
 		id: '',
 		name: '',
@@ -19,6 +20,13 @@ const AddProject: React.FC<AddProjectProps> = () => {
 		authorId: '',
 		date: '',
 	})
+
+
+	useEffect(() => {
+		if (!currentUser) {
+		  navigate('/');
+		}
+	 }, [currentUser, navigate]);
 
 	useEffect(() => {}, [project])
 	const handleInputChange = (
