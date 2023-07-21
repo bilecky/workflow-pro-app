@@ -56,7 +56,13 @@ https://github.com/bilecky/workflow-pro-app/assets/51762310/744fc057-49a0-4569-9
 - Firebase (Authentication and Firestore)
 - Tailwind CSS
 - Vite.js
-- Jest
+- Jest & React Testing Library
+
+## Future goals
+- Add advanced sorting
+- Add searching function
+- Add feature to delete comments, reply to someone's comment
+
 
 ## Installation
 1. Clone the repository: `git clone https://github.com/bilecky/workflow-pro-app`
