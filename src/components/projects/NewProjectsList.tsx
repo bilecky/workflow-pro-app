@@ -11,18 +11,19 @@ const NewProjectsList: React.FC = () => {
 	const dispatch: AppDispatch = useDispatch()
 	const projects = useSelector((state: RootState) => state.projects.data)
 
-	const sortedProjects = projects.slice().sort((a, b) => {
-		const dateA = new Date(a.date) as any
-		const dateB = new Date(b.date) as any
+	const sortedProjects = projects
+		.slice()
+		.sort((a, b) => {
+			const dateA = new Date(a.date) as any
+			const dateB = new Date(b.date) as any
 
-		return dateB - dateA
-	})
+			return dateB - dateA
+		})
+		.slice(0, 8)
 
 	useEffect(() => {
 		dispatch(fetchProjects())
 	}, [])
-
-	
 
 	return (
 		<Wrapper>
@@ -33,7 +34,7 @@ const NewProjectsList: React.FC = () => {
 				</span>
 			</h2>
 
-			<SingleProject  sortedProjects={sortedProjects} />
+			<SingleProject sortedProjects={sortedProjects} />
 		</Wrapper>
 	)
 }
